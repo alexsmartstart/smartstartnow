@@ -1,0 +1,2887 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)https://smartstartnow.co/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartStart — Stop Planning. Start Building.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface2: #1a1a1a;
+  --surface3: #222222;
+  --border: #2a2a2a;
+  --border2: #383838;
+  --text: #f0ece4;
+  --muted: #888888;
+  --faint: #444444;
+  --accent: #ff4d00;
+  --accent2: #ff6a2a;
+  --accent-dim: #2a1500;
+  --green: #00e676;
+  --green-dim: #002a12;
+  --gold: #ffd700;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* NAV */
+.nav {
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: rgba(10,10,10,.97);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.logo span { color: var(--accent); }
+.nav-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 4px 10px;
+  letter-spacing: .06em;
+}
+
+.progress-strip { height: 2px; background: var(--border); position: sticky; top: 61px; z-index: 99; }
+.progress-strip-fill { height: 2px; background: var(--accent); transition: width 0.5s ease; width: 0%; }
+
+.screen { display: none; min-height: calc(100vh - 63px); }
+.screen.active { display: block; }
+
+/* ─── HERO ─────────────────────────────────────────────── */
+.hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 40px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-left {}
+.hero-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-kicker::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(56px, 7vw, 92px);
+  font-weight: 900;
+  line-height: .95;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero h1 .line-accent {
+  color: var(--accent);
+  display: block;
+  font-style: italic;
+  margin-left: -4px;
+}
+.hero h1 .line-outline {
+  -webkit-text-stroke: 1px var(--text);
+  color: transparent;
+  display: block;
+}
+.hero-sub {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 420px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  font-weight: 400;
+}
+.hero-sub strong { color: var(--text); font-weight: 600; }
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 18px 36px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn-hero:hover {
+  background: var(--accent2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(255,77,0,.3);
+}
+.btn-arrow {
+  font-size: 20px;
+  transition: transform .2s;
+}
+.btn-hero:hover .btn-arrow { transform: translateX(4px); }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 48px;
+}
+.stat {
+  background: var(--surface);
+  padding: 18px 16px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* Hero right — preview card */
+.hero-right {}
+.hero-preview-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  overflow: hidden;
+}
+.hpc-header {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hpc-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .06em;
+}
+.hpc-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--green);
+}
+.hpc-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: blink 1.5s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.hpc-body { padding: 20px; }
+.hpc-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+.hpc-phase {
+  margin-bottom: 12px;
+}
+.hpc-phase-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hpc-step {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.hpc-step-dot {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border2);
+  flex-shrink: 0;
+}
+.hpc-step.done .hpc-step-dot {
+  background: var(--green);
+  border-color: var(--green);
+}
+.hpc-step.done { color: var(--faint); text-decoration: line-through; text-decoration-color: var(--faint); }
+.hpc-step.active { color: var(--text); border-color: var(--accent); background: var(--accent-dim); }
+.hpc-step.active .hpc-step-dot { border-color: var(--accent); background: var(--accent); }
+.hpc-blur {
+  position: relative;
+  overflow: hidden;
+}
+.hpc-blur::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(transparent, var(--surface));
+}
+.hpc-lock {
+  text-align: center;
+  padding: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--faint);
+  border-top: 1px solid var(--border);
+}
+
+@media(max-width: 768px) {
+  .hero { grid-template-columns: 1fr; padding: 60px 24px 40px; gap: 40px; }
+  .hero-stats { grid-template-columns: repeat(3, 1fr); }
+
+}
+
+/* ─── HOW IT WORKS STRIP ────────────────────────────────── */
+.how-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.how-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.how-step {
+  padding: 32px 28px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.how-step:last-child { border-right: none; }
+.how-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--border2);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.how-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.how-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+@media(max-width: 768px) {
+  .how-inner { grid-template-columns: 1fr 1fr; }
+  .how-step:nth-child(2) { border-right: none; }
+  .how-step:nth-child(3) { border-top: 1px solid var(--border); }
+  .how-step:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+}
+
+/* ─── QUIZ ──────────────────────────────────────────────── */
+.quiz-wrap {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 70px 24px 80px;
+  background: transparent;
+}
+.quiz-progress-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 40px;
+}
+.qpb-seg {
+  height: 2px;
+  flex: 1;
+  background: var(--border2);
+  transition: background .3s;
+}
+.qpb-seg.active { background: var(--accent); }
+.qpb-seg.done { background: var(--green); }
+
+.quiz-step-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--faint);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.quiz-question {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: .01em;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.quiz-question em {
+  font-style: italic;
+  color: var(--accent);
+}
+.quiz-sub {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.quiz-option {
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all .15s;
+  background: var(--surface);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.quiz-option::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--accent);
+  transition: width .15s;
+}
+.quiz-option:hover { border-color: var(--border2); background: var(--surface2); }
+.quiz-option.selected { border-color: var(--accent); background: var(--accent-dim); }
+.quiz-option.selected::before { width: 3px; }
+.opt-radio {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border2);
+  flex-shrink: 0;
+  position: relative;
+  transition: all .15s;
+}
+.quiz-option.selected .opt-radio {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.opt-radio::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background: white;
+  opacity: 0;
+  transition: opacity .15s;
+}
+.quiz-option.selected .opt-radio::after { opacity: 1; }
+.opt-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.opt-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.quiz-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  background: var(--surface);
+  position: relative;
+  z-index: 1;
+  color: var(--text);
+  outline: none;
+  transition: border-color .15s;
+  resize: none;
+  margin-bottom: 32px;
+}
+.quiz-input:focus { border-color: var(--accent); }
+.quiz-input::placeholder { color: var(--faint); }
+
+.quiz-nav { display: flex; gap: 10px; }
+.btn-back {
+  background: none;
+  border: 1px solid var(--border);
+  padding: 14px 22px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .15s;
+}
+.btn-back:hover { border-color: var(--border2); color: var(--text); }
+.btn-next {
+  flex: 1;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  padding: 14px 24px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.btn-next:hover { background: var(--accent); color: white; }
+.btn-next:disabled { opacity: .3; cursor: not-allowed; }
+
+/* ─── GENERATING ────────────────────────────────────────── */
+.generating-wrap {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 100px 24px;
+  text-align: center;
+}
+.gen-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--accent);
+  margin: 0 auto 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: gen-pulse 1.5s ease-in-out infinite;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+@keyframes gen-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+.gen-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  margin-bottom: 8px;
+}
+.gen-sub { font-size: 15px; color: var(--muted); margin-bottom: 44px; }
+.gen-steps { text-align: left; border: 1px solid var(--border); background: var(--surface); position: relative; z-index: 2; }
+.gen-step-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--faint);
+  transition: all .3s;
+  font-family: 'JetBrains Mono', monospace;
+}
+.gen-step-item:last-child { border-bottom: none; }
+.gen-step-item.active { color: var(--text); background: var(--accent-dim); border-left: 2px solid var(--accent); }
+.gen-step-item.done { color: var(--green); }
+.gen-step-icon {
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--border2);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  transition: all .3s;
+  font-family: 'JetBrains Mono', monospace;
+}
+.gen-step-item.active .gen-step-icon { border-color: var(--accent); background: var(--accent); color: white; animation: spin 1s linear infinite; }
+.gen-step-item.done .gen-step-icon { border-color: var(--green); background: var(--green); color: var(--bg); }
+@keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+
+/* ─── PREVIEW ───────────────────────────────────────────── */
+.preview-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.preview-left {}
+.preview-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.preview-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: blink 1.5s ease-in-out infinite;
+}
+.preview-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.preview-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--faint);
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Checkout card */
+.checkout-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 28px;
+  min-width: 280px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+.checkout-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+.cc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+}
+.cc-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+.cc-price span {
+  font-size: 28px;
+  font-weight: 700;
+  vertical-align: super;
+  color: var(--muted);
+}
+.cc-per { font-size: 13px; color: var(--faint); margin-bottom: 20px; }
+.cc-features { list-style: none; margin-bottom: 22px; }
+.cc-features li {
+  font-size: 13px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+}
+.cc-features li:last-child { border-bottom: none; }
+.cc-check { color: var(--green); font-size: 12px; flex-shrink: 0; }
+.btn-checkout {
+  width: 100%;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.btn-checkout:hover {
+  background: var(--accent2);
+  box-shadow: 0 8px 30px rgba(255,77,0,.3);
+}
+.cc-secure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+  margin-top: 10px;
+  letter-spacing: .06em;
+}
+
+/* Blueprint preview panel */
+.blueprint-preview {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.blueprint-preview-header {
+  background: var(--surface2);
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bph-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .06em;
+}
+.bph-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 2px 8px;
+  letter-spacing: .06em;
+}
+.blueprint-content {
+  padding: 20px;
+  max-height: 420px;
+  overflow: hidden;
+  position: relative;
+}
+.paywall-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, var(--surface));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 24px;
+}
+.paywall-cta {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+.paywall-cta:hover { background: var(--accent2); }
+
+/* Blueprint step cards */
+.bp-phase { margin-bottom: 24px; }
+.bp-phase-label { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.bp-phase-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 3px 10px;
+  border: 1px solid;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.bp-phase-timing {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+}
+.bp-step {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  margin-bottom: 6px;
+  overflow: hidden;
+  transition: border-color .15s;
+}
+.bp-step:hover { border-color: var(--border2); }
+.bp-step.bp-done { border-color: #004d1e; background: #0a1a10; }
+.bp-step-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 15px;
+  cursor: pointer;
+  user-select: none;
+}
+.bp-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+}
+.bp-step.bp-done .bp-checkbox { background: var(--green); border-color: var(--green); }
+.bp-step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+  margin-bottom: 2px;
+  letter-spacing: .06em;
+}
+.bp-step.bp-done .bp-step-num { color: var(--green); }
+.bp-step-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 5px;
+  color: var(--text);
+}
+.bp-step.bp-done .bp-step-title { text-decoration: line-through; color: var(--faint); }
+.bp-step-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.bp-tag {
+  font-size: 10px;
+  padding: 2px 7px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .04em;
+  border: 1px solid;
+}
+.bp-arrow { color: var(--faint); font-size: 14px; transition: transform .2s; flex-shrink: 0; padding-top: 3px; margin-left: auto; }
+.bp-step.bp-open .bp-arrow { transform: rotate(180deg); }
+.bp-step-body { display: none; padding: 0 15px 13px 47px; border-top: 1px solid var(--border); }
+.bp-step.bp-open .bp-step-body { display: block; }
+.bp-step-detail { font-size: 13px; color: var(--muted); line-height: 1.75; margin-top: 12px; }
+.bp-progress { padding: 0 0 16px; }
+.bp-progress-top { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.bp-progress-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+.bp-progress-count { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); }
+.bp-progress-track { background: var(--border); height: 3px; }
+.bp-progress-fill { background: var(--accent); height: 3px; width: 0%; transition: width .4s; }
+
+/* ─── MODAL ─────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 36px;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+.modal-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  margin-bottom: 4px;
+}
+.modal-sub { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+.modal-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.modal-price-label { font-size: 14px; color: var(--muted); }
+.modal-price-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--accent);
+}
+.form-group { margin-bottom: 14px; }
+.form-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+.form-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  background: var(--surface2);
+  color: var(--text);
+  outline: none;
+  transition: border-color .15s;
+}
+.form-input:focus { border-color: var(--accent); }
+.form-input::placeholder { color: var(--faint); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stripe-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+  margin: 12px 0 16px;
+  justify-content: center;
+  letter-spacing: .06em;
+}
+.btn-pay {
+  width: 100%;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.btn-pay:hover { background: var(--accent2); }
+.btn-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: var(--faint);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  transition: color .15s;
+}
+.btn-modal-close:hover { color: var(--text); }
+
+/* Discount code */
+.discount-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.discount-row .form-input { flex: 1; text-transform: uppercase; letter-spacing: .1em; }
+.btn-apply {
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 0 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+  letter-spacing: .06em;
+}
+.btn-apply:hover { border-color: var(--accent); color: var(--accent); }
+.discount-msg { font-family: 'JetBrains Mono', monospace; font-size: 11px; margin-bottom: 12px; }
+.discount-msg.ok { color: var(--green); }
+.discount-msg.err { color: var(--accent); }
+
+/* ─── SUCCESS ───────────────────────────────────────────── */
+.success-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  text-align: center;
+}
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--green-dim);
+  border: 1px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  font-size: 36px;
+  position: relative;
+  z-index: 2;
+}
+.success-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.success-sub { font-size: 16px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; }
+.success-download {
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  padding: 18px 36px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.success-download:hover { background: var(--accent); color: white; }
+
+@media(max-width: 640px) {
+  .nav { padding: 14px 20px; }
+  .preview-header { flex-direction: column; }
+  .checkout-card { min-width: 100%; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ─── FAQ ───────────────────────────────────────────────── */
+.faq-section {
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+.faq-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: flex-start;
+}
+.faq-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.faq-kicker::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+.faq-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -.01em;
+  position: sticky;
+  top: 80px;
+}
+.faq-list { display: flex; flex-direction: column; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s;
+  background: var(--bg);
+}
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-item:hover { background: var(--surface); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 4px;
+  gap: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  user-select: none;
+}
+.faq-arrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: transform .2s;
+  line-height: 1;
+}
+.faq-item.open .faq-arrow { transform: rotate(45deg); }
+.faq-a {
+  display: none;
+  padding: 0 4px 20px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+.footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 48px 40px 32px;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+.footer-brand-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 10px;
+}
+.footer-brand-name span { color: var(--accent); }
+.footer-brand-desc {
+  font-size: 13px;
+  color: var(--faint);
+  line-height: 1.7;
+  max-width: 220px;
+}
+.footer-col-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 14px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-link {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .15s;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0;
+  font-family: 'Barlow', sans-serif;
+}
+.footer-link:hover { color: var(--text); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-copy {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--faint);
+  letter-spacing: .04em;
+}
+.footer-legal {
+  display: flex;
+  gap: 20px;
+}
+.footer-legal a, .footer-legal button {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--faint);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color .15s;
+  letter-spacing: .04em;
+}
+.footer-legal a:hover, .footer-legal button:hover { color: var(--muted); }
+
+/* ─── LEGAL MODAL ────────────────────────────────────────── */
+.legal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.88);
+  z-index: 2000;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 24px;
+  overflow-y: auto;
+  backdrop-filter: blur(4px);
+}
+.legal-modal-overlay.open { display: flex; }
+.legal-modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 40px;
+  max-width: 680px;
+  width: 100%;
+  position: relative;
+  margin: auto;
+}
+.legal-modal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+.legal-modal-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  margin-bottom: 6px;
+}
+.legal-modal-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--faint);
+  margin-bottom: 28px;
+  letter-spacing: .06em;
+}
+.legal-body h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--accent);
+  margin: 22px 0 8px;
+}
+.legal-body p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+.btn-legal-close {
+  position: absolute;
+  top: 16px; right: 18px;
+  background: none;
+  border: none;
+  color: var(--faint);
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  transition: color .15s;
+}
+.btn-legal-close:hover { color: var(--text); }
+
+@media(max-width: 768px) {
+  .faq-inner { grid-template-columns: 1fr; gap: 32px; }
+  .faq-title { font-size: 36px; position: static; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-section { padding: 60px 24px; }
+}
+@media(max-width: 480px) {
+  .footer-top { grid-template-columns: 1fr; }
+  .faq-section { padding: 60px 24px; }
+  .footer { padding: 40px 24px 28px; }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo" onclick="goHome()" style="cursor:pointer;">Smart<span>Start</span></div>
+  <div class="nav-badge">$47 / blueprint</div>
+</nav>
+<div class="progress-strip"><div class="progress-strip-fill" id="progressStrip"></div></div>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<div class="screen active" id="screen-hero" style="position:relative;overflow:hidden;">
+
+  <!-- Combined Option B + D: blueprint grid + atmospheric glow -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+
+    <!-- Option B: Blueprint grid -->
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+      <defs>
+        <pattern id="smallgrid" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#ff4d00" stroke-width="0.3" opacity="0.1"></path>
+        </pattern>
+        <pattern id="grid" width="160" height="160" patternUnits="userSpaceOnUse">
+          <rect width="160" height="160" fill="url(#smallgrid)"></rect>
+          <path d="M 160 0 L 0 0 0 160" fill="none" stroke="#ff4d00" stroke-width="0.5" opacity="0.16"></path>
+        </pattern>
+        <radialgradient id="gridfade" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" stop-color="#0a0a0a" stop-opacity="0"></stop>
+          <stop offset="55%" stop-color="#0a0a0a" stop-opacity="0.4"></stop>
+          <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0.92"></stop>
+        </radialgradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"></rect>
+      <rect width="100%" height="100%" fill="url(#gridfade)"></rect>
+    </svg>
+
+    <!-- Blueprint nodes and connections -->
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+      <defs>
+        <filter id="glow">
+          <fegaussianblur stdDeviation="3" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+        <filter id="glow-strong">
+          <fegaussianblur stdDeviation="7" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+      </defs>
+      <!-- Connection lines -->
+      <line x1="18%" y1="18%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="36%" y1="32%" x2="52%" y2="22%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="52%" y1="22%" x2="68%" y2="38%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="18%" y1="18%" x2="22%" y2="52%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="22%" y1="52%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <line x1="36%" y1="32%" x2="44%" y2="62%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="44%" y1="62%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="68%" y1="38%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <!-- Dim nodes -->
+      <circle cx="22%" cy="52%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="44%" cy="62%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="62%" cy="68%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="68%" cy="38%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="52%" cy="22%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <circle cx="18%" cy="18%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <!-- Primary glowing node -->
+      <circle cx="36%" cy="32%" r="14" fill="#ff4d00" opacity="0.05" filter="url(#glow-strong)"></circle>
+      <circle cx="36%" cy="32%" r="6" fill="none" stroke="#ff4d00" stroke-width="1.5" opacity="0.55" filter="url(#glow)"></circle>
+      <circle cx="36%" cy="32%" r="2.5" fill="#ff4d00" opacity="0.85" filter="url(#glow)"></circle>
+      <!-- Blueprint squares -->
+      <rect width="8" height="8" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.35" transform="translate(calc(18% - 4px), calc(18% - 4px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28" transform="translate(calc(52% - 3px), calc(22% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.22" transform="translate(calc(68% - 3px), calc(38% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.2" transform="translate(calc(44% - 3px), calc(62% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.18" transform="translate(calc(62% - 3px), calc(68% - 3px))"></rect>
+      <!-- Blueprint annotations -->
+      <text x="30%" y="31%" fill="#ff4d00" font-family="monospace" font-size="8" opacity="0.22" letter-spacing="0.1em">NODE_A</text>
+      <text x="53%" y="21%" fill="#ff4d00" font-family="monospace" font-size="8" opacity="0.17" letter-spacing="0.1em">STEP_03</text>
+      <!-- Measurement lines -->
+      <line x1="8%" y1="80%" x2="28%" y2="80%" stroke="#ff4d00" stroke-width="0.5" opacity="0.12" stroke-dasharray="4 3"></line>
+      <line x1="8%" y1="78%" x2="8%" y2="82%" stroke="#ff4d00" stroke-width="0.5" opacity="0.12"></line>
+      <line x1="28%" y1="78%" x2="28%" y2="82%" stroke="#ff4d00" stroke-width="0.5" opacity="0.12"></line>
+      <text x="15%" y="79%" fill="#ff4d00" font-family="monospace" font-size="8" opacity="0.15" letter-spacing="0.1em">PHASE_01</text>
+    </svg>
+
+    <!-- Option D: Atmospheric orange glow layered on top of the grid -->
+    <div style="position:absolute;left:-10%;top:10%;width:70%;height:80%;background:radial-gradient(ellipse at 38% 58%, rgba(255,77,0,0.1) 0%, rgba(255,77,0,0.04) 35%, transparent 70%);"></div>
+    <div style="position:absolute;left:5%;top:30%;width:45%;height:50%;background:radial-gradient(ellipse at 40% 50%, rgba(255,106,42,0.06) 0%, transparent 65%);"></div>
+    <div style="position:absolute;left:2%;top:52%;width:32%;height:28%;background:radial-gradient(ellipse at 45% 50%, rgba(255,77,0,0.09) 0%, transparent 60%);"></div>
+    <div style="position:absolute;right:0;top:20%;width:40%;height:60%;background:radial-gradient(ellipse at 60% 40%, rgba(255,77,0,0.03) 0%, transparent 65%);"></div>
+  </div>
+
+  <div class="hero" style="position:relative;z-index:1;">
+    <div class="hero-left">
+      <div class="hero-kicker">AI business blueprints</div>
+      <h1>
+        <span>Stop</span>
+        <span class="line-accent">waiting.</span>
+        <span class="line-outline">Start smart.</span>
+      </h1>
+      <p class="hero-sub">
+        You've had the idea for months.<br>
+        <em>What's actually stopping you isn't money, time, or talent.</em><br>
+        <strong>Every day you wait, someone else starts.</strong><br><br>
+        Answer 5 questions. Get your exact step-by-step launch plan — built for your specific business, not someone else's.
+      </p>
+      <button class="btn-hero" onclick="startQuiz()">
+        Build my blueprint
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">2 min</div>
+          <div class="stat-label">to complete</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">$47</div>
+          <div class="stat-label">one-time</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">personalized</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-preview-card">
+        <div class="hpc-header">
+          <span class="hpc-title">SAMPLE BLUEPRINT</span>
+          <span class="hpc-live"><span class="hpc-dot"></span>AI-generated</span>
+        </div>
+        <div class="hpc-body">
+          <div class="hpc-name" id="hpcName">Pressure Washing LA</div>
+          <div class="hpc-phase">
+            <div class="hpc-phase-label">Phase 1 — Day 1–3</div>
+            <div id="hpcSteps"><div class="hpc-step done"><div class="hpc-step-dot"></div><span>Get insured via Next Insurance ($30–60/mo)</span></div><div class="hpc-step done"><div class="hpc-step-dot"></div><span>Set up Google Business Profile</span></div><div class="hpc-step active"><div class="hpc-step-dot"></div><span>Post in 10 local Facebook groups today</span></div><div class="hpc-step "><div class="hpc-step-dot"></div><span>List on Thumbtack, Angi &amp; Nextdoor</span></div><div class="hpc-step "><div class="hpc-step-dot"></div><span>Flyer 50 homes in your neighborhood</span></div></div>
+          </div>
+          <div class="hpc-blur"></div>
+        </div>
+        <div class="hpc-lock">🔒 Full blueprint unlocked after purchase</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="how-strip">
+    <div class="how-inner">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-title">Tell us your idea</div>
+        <div class="how-desc">5 quick questions about your business type, experience, budget, and goal.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <div class="how-title">AI builds your plan</div>
+        <div class="how-desc">SmartStart analyzes your answers and generates a step-by-step plan specific to your exact idea.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-title">Preview your blueprint</div>
+        <div class="how-desc">See the first phase of your personalized plan before you pay a single dollar.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <div class="how-title">Unlock &amp; build</div>
+        <div class="how-desc">Pay $47 — one-time, no subscription. Get the full interactive checklist emailed to you instantly. Start executing today.</div>
+      </div>
+    </div>
+  </div>
+
+<!-- ═══ FAQ ════════════════════════════════════════════════ -->
+<div class="faq-section" id="faq">
+
+  <!-- Blueprint grid background at reduced opacity -->
+  <div style="position:absolute;inset:0;pointer-events:none;z-index:0;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+      <defs>
+        <pattern id="faqsmallgrid" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#ff4d00" stroke-width="0.3" opacity="0.07"></path>
+        </pattern>
+        <pattern id="faqgrid" width="160" height="160" patternUnits="userSpaceOnUse">
+          <rect width="160" height="160" fill="url(#faqsmallgrid)"></rect>
+          <path d="M 160 0 L 0 0 0 160" fill="none" stroke="#ff4d00" stroke-width="0.5" opacity="0.11"></path>
+        </pattern>
+        <radialgradient id="faqgridfade" cx="30%" cy="50%" r="75%">
+          <stop offset="0%" stop-color="#0a0a0a" stop-opacity="0"></stop>
+          <stop offset="55%" stop-color="#0a0a0a" stop-opacity="0.45"></stop>
+          <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0.88"></stop>
+        </radialgradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#faqgrid)"></rect>
+      <rect width="100%" height="100%" fill="url(#faqgridfade)"></rect>
+    </svg>
+    <!-- Glow from left side — continues from hero -->
+    <div style="position:absolute;left:-10%;top:0%;width:70%;height:100%;background:radial-gradient(ellipse at 35% 40%, rgba(255,77,0,0.08) 0%, rgba(255,77,0,0.04) 40%, transparent 70%);"></div>
+    <div style="position:absolute;left:0%;top:20%;width:40%;height:60%;background:radial-gradient(ellipse at 38% 50%, rgba(255,106,42,0.05) 0%, transparent 65%);"></div>
+  </div>
+
+  <div class="faq-inner" style="position:relative;z-index:1;">
+    <div class="faq-header">
+      <div class="faq-kicker">Got questions</div>
+      <h2 class="faq-title">Everything<br>you need<br>to know.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>What exactly do I get?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a">You get a fully personalized, interactive step-by-step business launch checklist built specifically for your idea. It's delivered as an HTML file you open in any browser — no app needed, no account to create. Inside you'll find 4–5 phases with 4–6 specific action steps each, covering everything from legal setup and tools to how to get your first customer. Every step includes real tool names, real costs, and specific instructions — not generic advice that could apply to anyone.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>How is this different from just Googling it?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a">When you Google "how to start a business" you get 47 articles all saying different things, none of them in the right order, none of them specific to your situation. SmartStart takes your exact answers and produces one clear path — step 1, do this. Step 2, do this. No contradictions, no rabbit holes, no 2am research spirals. The $47 is paying for the clarity, not the information.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>What kinds of businesses does this work for?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a">SmartStart is built for people starting real businesses — not funding rounds or Fortune 500 strategies. It works for local service businesses (pressure washing, cleaning, lawn care), content creators and social media affiliates, e-commerce and product brands, freelancers and consultants, digital products and info businesses, and food and beverage businesses. If you're a real person with a business idea and want to know what to do first, this is for you.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>What if my idea is really specific or unusual?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a">That's exactly when SmartStart shines. The more specific your idea, the more specific your blueprint. Someone starting a pet portrait Etsy shop gets completely different steps than someone starting a food truck. The AI uses your exact description to tailor every step — real tools, real numbers, real guidance built around what you're actually building.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>How fast do I get it after paying?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a">Instantly. The moment your payment goes through, your personalized blueprint is generated and emailed to you as an attachment. Most people receive it within 60 seconds of completing checkout. You can also download it directly from the confirmation screen. No waiting, no manual processing — it's automated and immediate.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Do I need any technical skills?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a">Zero. You answer 5 questions, pay once, and open a file in your browser. The blueprint is a simple interactive checklist — click to expand each step, check it off when done, move to the next one. If you can use a website, you can use this. No software to install, no account to manage, no subscriptions.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>What's your refund policy?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a">If you receive your blueprint and genuinely feel it wasn't personalized to your idea or didn't provide real value — email us at <a href="/cdn-cgi/l/email-protection#e794929797889593a7948a8695939493869593898890c98488" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="275452575748555367544a4655535453465553494850094448">[email&#160;protected]</span></a> within 7 days and we'll refund you in full, no questions asked. We stand behind the product. The only thing we ask is that you actually open it before deciding — most concerns people have going in are answered once they see the blueprint.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Is my business idea private? Will SmartStart store or use it?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a">Your idea is completely private. SmartStart does not store your answers, does not log what you type, and has no database of customer ideas. The moment your blueprint is generated and emailed to you, your information is gone — it exists nowhere. Nobody at SmartStart can see what you entered, and your idea is never used for any other purpose. You can type your most sensitive business concept with full confidence that it stays yours.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Is this a subscription?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a">No subscription, no recurring charges. $47 one time. You own your blueprint forever. We will never charge your card again without you explicitly purchasing something new.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ LEGAL MODALS ════════════════════════════════════════ -->
+<div class="legal-modal-overlay" id="legalModal">
+  <div class="legal-modal">
+    <button class="btn-legal-close" onclick="closeLegal()">×</button>
+    <div class="legal-modal-title" id="legalTitle"></div>
+    <div class="legal-modal-date" id="legalDate"></div>
+    <div class="legal-body" id="legalBody"></div>
+  </div>
+</div>
+
+</div><!-- end screen-hero -->
+
+<!-- ═══ QUIZ ═══════════════════════════════════════════════ -->
+<div class="screen" id="screen-quiz" style="position:relative;overflow:hidden;">
+  <!-- Blueprint grid + nodes background -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+      <defs>
+        <pattern id="sg_quiz" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#ff4d00" stroke-width="0.3" opacity="0.07"></path>
+        </pattern>
+        <pattern id="lg_quiz" width="160" height="160" patternUnits="userSpaceOnUse">
+          <rect width="160" height="160" fill="url(#sg_quiz)"></rect>
+          <path d="M 160 0 L 0 0 0 160" fill="none" stroke="#ff4d00" stroke-width="0.5" opacity="0.11"></path>
+        </pattern>
+        <radialgradient id="gf_quiz" cx="30%" cy="40%" r="75%">
+          <stop offset="0%" stop-color="#0a0a0a" stop-opacity="0"></stop>
+          <stop offset="55%" stop-color="#0a0a0a" stop-opacity="0.45"></stop>
+          <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0.88"></stop>
+        </radialgradient>
+        <filter id="glow_quiz">
+          <fegaussianblur stdDeviation="3" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+        <filter id="glows_quiz">
+          <fegaussianblur stdDeviation="7" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+      </defs>
+      <!-- Grid -->
+      <rect width="100%" height="100%" fill="url(#lg_quiz)"></rect>
+      <rect width="100%" height="100%" fill="url(#gf_quiz)"></rect>
+      <!-- Connection lines -->
+      <line x1="18%" y1="18%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="36%" y1="32%" x2="52%" y2="22%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="52%" y1="22%" x2="68%" y2="38%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="18%" y1="18%" x2="22%" y2="52%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="22%" y1="52%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <line x1="36%" y1="32%" x2="44%" y2="62%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="44%" y1="62%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="68%" y1="38%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <!-- Nodes -->
+      <circle cx="22%" cy="52%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="44%" cy="62%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="62%" cy="68%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="68%" cy="38%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="52%" cy="22%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <circle cx="18%" cy="18%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <!-- Primary glowing node -->
+      <circle cx="36%" cy="32%" r="14" fill="#ff4d00" opacity="0.05" filter="url(#glows_quiz)"></circle>
+      <circle cx="36%" cy="32%" r="6" fill="none" stroke="#ff4d00" stroke-width="1.5" opacity="0.55" filter="url(#glow_quiz)"></circle>
+      <circle cx="36%" cy="32%" r="2.5" fill="#ff4d00" opacity="0.85" filter="url(#glow_quiz)"></circle>
+      <!-- Blueprint squares -->
+      <rect width="8" height="8" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.35" transform="translate(calc(18% - 4px), calc(18% - 4px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28" transform="translate(calc(52% - 3px), calc(22% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.22" transform="translate(calc(68% - 3px), calc(38% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.2" transform="translate(calc(44% - 3px), calc(62% - 3px))"></rect>
+    </svg>
+    <!-- Atmospheric glow -->
+    <div style="position:absolute;left:-10%;top:0%;width:70%;height:100%;background:radial-gradient(ellipse at 35% 40%, rgba(255,77,0,0.07) 0%, rgba(255,77,0,0.03) 40%, transparent 70%);"></div>
+  </div>
+<div class="quiz-wrap" id="quizWrap" style="position:relative;z-index:1;"></div>
+</div>
+
+<!-- ═══ GENERATING ═════════════════════════════════════════ -->
+<div class="screen" id="screen-generating" style="position:relative;overflow:hidden;">
+  <!-- Blueprint grid + nodes background -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+      <defs>
+        <pattern id="sg_generating" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#ff4d00" stroke-width="0.3" opacity="0.07"></path>
+        </pattern>
+        <pattern id="lg_generating" width="160" height="160" patternUnits="userSpaceOnUse">
+          <rect width="160" height="160" fill="url(#sg_generating)"></rect>
+          <path d="M 160 0 L 0 0 0 160" fill="none" stroke="#ff4d00" stroke-width="0.5" opacity="0.11"></path>
+        </pattern>
+        <radialgradient id="gf_generating" cx="30%" cy="40%" r="75%">
+          <stop offset="0%" stop-color="#0a0a0a" stop-opacity="0"></stop>
+          <stop offset="55%" stop-color="#0a0a0a" stop-opacity="0.45"></stop>
+          <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0.88"></stop>
+        </radialgradient>
+        <filter id="glow_generating">
+          <fegaussianblur stdDeviation="3" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+        <filter id="glows_generating">
+          <fegaussianblur stdDeviation="7" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+      </defs>
+      <!-- Grid -->
+      <rect width="100%" height="100%" fill="url(#lg_generating)"></rect>
+      <rect width="100%" height="100%" fill="url(#gf_generating)"></rect>
+      <!-- Connection lines -->
+      <line x1="18%" y1="18%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="36%" y1="32%" x2="52%" y2="22%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="52%" y1="22%" x2="68%" y2="38%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="18%" y1="18%" x2="22%" y2="52%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="22%" y1="52%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <line x1="36%" y1="32%" x2="44%" y2="62%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="44%" y1="62%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="68%" y1="38%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <!-- Nodes -->
+      <circle cx="22%" cy="52%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="44%" cy="62%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="62%" cy="68%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="68%" cy="38%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="52%" cy="22%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <circle cx="18%" cy="18%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <!-- Primary glowing node -->
+      <circle cx="36%" cy="32%" r="14" fill="#ff4d00" opacity="0.05" filter="url(#glows_generating)"></circle>
+      <circle cx="36%" cy="32%" r="6" fill="none" stroke="#ff4d00" stroke-width="1.5" opacity="0.55" filter="url(#glow_generating)"></circle>
+      <circle cx="36%" cy="32%" r="2.5" fill="#ff4d00" opacity="0.85" filter="url(#glow_generating)"></circle>
+      <!-- Blueprint squares -->
+      <rect width="8" height="8" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.35" transform="translate(calc(18% - 4px), calc(18% - 4px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28" transform="translate(calc(52% - 3px), calc(22% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.22" transform="translate(calc(68% - 3px), calc(38% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.2" transform="translate(calc(44% - 3px), calc(62% - 3px))"></rect>
+    </svg>
+    <!-- Atmospheric glow -->
+    <div style="position:absolute;left:-10%;top:0%;width:70%;height:100%;background:radial-gradient(ellipse at 35% 40%, rgba(255,77,0,0.07) 0%, rgba(255,77,0,0.03) 40%, transparent 70%);"></div>
+  </div>
+<div class="generating-wrap" style="position:relative;z-index:1;">
+    <div class="gen-icon">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <path d="M17 4L21.5 13.5L32 15L24.5 22L26.5 32L17 27L7.5 32L9.5 22L2 15L12.5 13.5L17 4Z" fill="white"></path>
+      </svg>
+    </div>
+    <h2 class="gen-title">Building your blueprint</h2>
+    <p class="gen-sub">Analyzing your answers and creating your personalized plan...</p>
+    <div class="gen-steps">
+      <div class="gen-step-item" id="gstep1"><div class="gen-step-icon">1</div><span>Analyzing your business type and goals</span></div>
+      <div class="gen-step-item" id="gstep2"><div class="gen-step-icon">2</div><span>Identifying your fastest path to first dollar</span></div>
+      <div class="gen-step-item" id="gstep3"><div class="gen-step-icon">3</div><span>Adding real tools, costs, and timelines</span></div>
+      <div class="gen-step-item" id="gstep4"><div class="gen-step-icon">4</div><span>Building your step-by-step action plan</span></div>
+      <div class="gen-step-item" id="gstep5"><div class="gen-step-icon">5</div><span>Finalizing your personalized blueprint</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PREVIEW ════════════════════════════════════════════ -->
+<div class="screen" id="screen-preview" style="position:relative;overflow:hidden;">
+  <!-- Blueprint grid + nodes background -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+      <defs>
+        <pattern id="sg_preview" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#ff4d00" stroke-width="0.3" opacity="0.07"></path>
+        </pattern>
+        <pattern id="lg_preview" width="160" height="160" patternUnits="userSpaceOnUse">
+          <rect width="160" height="160" fill="url(#sg_preview)"></rect>
+          <path d="M 160 0 L 0 0 0 160" fill="none" stroke="#ff4d00" stroke-width="0.5" opacity="0.11"></path>
+        </pattern>
+        <radialgradient id="gf_preview" cx="30%" cy="40%" r="75%">
+          <stop offset="0%" stop-color="#0a0a0a" stop-opacity="0"></stop>
+          <stop offset="55%" stop-color="#0a0a0a" stop-opacity="0.45"></stop>
+          <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0.88"></stop>
+        </radialgradient>
+        <filter id="glow_preview">
+          <fegaussianblur stdDeviation="3" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+        <filter id="glows_preview">
+          <fegaussianblur stdDeviation="7" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+      </defs>
+      <!-- Grid -->
+      <rect width="100%" height="100%" fill="url(#lg_preview)"></rect>
+      <rect width="100%" height="100%" fill="url(#gf_preview)"></rect>
+      <!-- Connection lines -->
+      <line x1="18%" y1="18%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="36%" y1="32%" x2="52%" y2="22%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="52%" y1="22%" x2="68%" y2="38%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="18%" y1="18%" x2="22%" y2="52%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="22%" y1="52%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <line x1="36%" y1="32%" x2="44%" y2="62%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="44%" y1="62%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="68%" y1="38%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <!-- Nodes -->
+      <circle cx="22%" cy="52%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="44%" cy="62%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="62%" cy="68%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="68%" cy="38%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="52%" cy="22%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <circle cx="18%" cy="18%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <!-- Primary glowing node -->
+      <circle cx="36%" cy="32%" r="14" fill="#ff4d00" opacity="0.05" filter="url(#glows_preview)"></circle>
+      <circle cx="36%" cy="32%" r="6" fill="none" stroke="#ff4d00" stroke-width="1.5" opacity="0.55" filter="url(#glow_preview)"></circle>
+      <circle cx="36%" cy="32%" r="2.5" fill="#ff4d00" opacity="0.85" filter="url(#glow_preview)"></circle>
+      <!-- Blueprint squares -->
+      <rect width="8" height="8" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.35" transform="translate(calc(18% - 4px), calc(18% - 4px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28" transform="translate(calc(52% - 3px), calc(22% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.22" transform="translate(calc(68% - 3px), calc(38% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.2" transform="translate(calc(44% - 3px), calc(62% - 3px))"></rect>
+    </svg>
+    <!-- Atmospheric glow -->
+    <div style="position:absolute;left:-10%;top:0%;width:70%;height:100%;background:radial-gradient(ellipse at 35% 40%, rgba(255,77,0,0.07) 0%, rgba(255,77,0,0.03) 40%, transparent 70%);"></div>
+  </div>
+<div class="preview-wrap" style="position:relative;z-index:1;">
+    <div class="preview-header">
+      <div class="preview-left">
+        <div class="preview-eyebrow">Your blueprint is ready</div>
+        <div class="preview-title" id="previewTitle">Your Business Launch Blueprint</div>
+        <div class="preview-meta" id="previewMeta">
+          <span>20 steps</span><span>Personalized timeline</span><span>Tools included</span>
+        </div>
+      </div>
+      <div class="checkout-card">
+        <div class="cc-label">Introductory price — limited time</div>
+        <div class="cc-price"><span>$</span>47</div>
+        <div class="cc-per">Lifetime access · Price goes up soon</div>
+        <ul class="cc-features">
+          <li><span class="cc-check">✓</span> Full interactive checklist</li>
+          <li><span class="cc-check">✓</span> Specific tools &amp; costs for your idea</li>
+          <li><span class="cc-check">✓</span> Progress tracking built in</li>
+          <li><span class="cc-check">✓</span> Emailed instantly after payment</li>
+          <li><span class="cc-check">✓</span> Yours to keep forever</li>
+        </ul>
+        <button class="btn-checkout" onclick="openCheckout()">Unlock full blueprint — $47 →</button>
+        <div class="cc-secure">🔒 Secured by Stripe</div>
+      </div>
+    </div>
+
+    <div class="blueprint-preview">
+      <div class="blueprint-preview-header">
+        <span class="bph-title">YOUR PERSONALIZED BLUEPRINT — PREVIEW</span>
+        <span class="bph-badge">FIRST 3 STEPS UNLOCKED</span>
+      </div>
+      <div class="blueprint-content">
+        <div id="blueprintMount"></div>
+        <div class="paywall-fade">
+          <button class="paywall-cta" onclick="openCheckout()">🔒 Unlock all steps — $47</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SUCCESS ════════════════════════════════════════════ -->
+<div class="screen" id="screen-success" style="position:relative;overflow:hidden;">
+  <!-- Blueprint grid + nodes background -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+      <defs>
+        <pattern id="sg_success" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#ff4d00" stroke-width="0.3" opacity="0.07"></path>
+        </pattern>
+        <pattern id="lg_success" width="160" height="160" patternUnits="userSpaceOnUse">
+          <rect width="160" height="160" fill="url(#sg_success)"></rect>
+          <path d="M 160 0 L 0 0 0 160" fill="none" stroke="#ff4d00" stroke-width="0.5" opacity="0.11"></path>
+        </pattern>
+        <radialgradient id="gf_success" cx="30%" cy="40%" r="75%">
+          <stop offset="0%" stop-color="#0a0a0a" stop-opacity="0"></stop>
+          <stop offset="55%" stop-color="#0a0a0a" stop-opacity="0.45"></stop>
+          <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0.88"></stop>
+        </radialgradient>
+        <filter id="glow_success">
+          <fegaussianblur stdDeviation="3" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+        <filter id="glows_success">
+          <fegaussianblur stdDeviation="7" result="blur"></fegaussianblur>
+          <femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+        </filter>
+      </defs>
+      <!-- Grid -->
+      <rect width="100%" height="100%" fill="url(#lg_success)"></rect>
+      <rect width="100%" height="100%" fill="url(#gf_success)"></rect>
+      <!-- Connection lines -->
+      <line x1="18%" y1="18%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="36%" y1="32%" x2="52%" y2="22%" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></line>
+      <line x1="52%" y1="22%" x2="68%" y2="38%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="18%" y1="18%" x2="22%" y2="52%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="22%" y1="52%" x2="36%" y2="32%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <line x1="36%" y1="32%" x2="44%" y2="62%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="44%" y1="62%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.7" opacity="0.15"></line>
+      <line x1="68%" y1="38%" x2="62%" y2="68%" stroke="#ff4d00" stroke-width="0.6" opacity="0.12"></line>
+      <!-- Nodes -->
+      <circle cx="22%" cy="52%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="44%" cy="62%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.25"></circle>
+      <circle cx="62%" cy="68%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="68%" cy="38%" r="3" fill="none" stroke="#ff4d00" stroke-width="0.8" opacity="0.2"></circle>
+      <circle cx="52%" cy="22%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <circle cx="18%" cy="18%" r="5" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28"></circle>
+      <!-- Primary glowing node -->
+      <circle cx="36%" cy="32%" r="14" fill="#ff4d00" opacity="0.05" filter="url(#glows_success)"></circle>
+      <circle cx="36%" cy="32%" r="6" fill="none" stroke="#ff4d00" stroke-width="1.5" opacity="0.55" filter="url(#glow_success)"></circle>
+      <circle cx="36%" cy="32%" r="2.5" fill="#ff4d00" opacity="0.85" filter="url(#glow_success)"></circle>
+      <!-- Blueprint squares -->
+      <rect width="8" height="8" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.35" transform="translate(calc(18% - 4px), calc(18% - 4px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.28" transform="translate(calc(52% - 3px), calc(22% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.22" transform="translate(calc(68% - 3px), calc(38% - 3px))"></rect>
+      <rect width="6" height="6" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.2" transform="translate(calc(44% - 3px), calc(62% - 3px))"></rect>
+    </svg>
+    <!-- Atmospheric glow -->
+    <div style="position:absolute;left:-10%;top:0%;width:70%;height:100%;background:radial-gradient(ellipse at 35% 40%, rgba(255,77,0,0.07) 0%, rgba(255,77,0,0.03) 40%, transparent 70%);"></div>
+  </div>
+<div class="success-wrap" style="position:relative;z-index:1;">
+    <div class="success-icon">✓</div>
+    <h2 class="success-title">You're in.</h2>
+    <p class="success-sub">Your blueprint is on its way to your inbox right now. Open it, start Phase 1 today.<br><br>Most people who buy this and actually follow the steps make their first dollar within 30 days. You have everything you need.</p>
+    <button class="success-download" onclick="downloadBlueprint()">
+      Download blueprint ↓
+    </button>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Smart<span>Start</span></div>
+        <p class="footer-brand-desc">Custom AI-generated business blueprints for people who are done overthinking and ready to start.</p>
+      </div>
+      <div>
+        <div class="footer-col-label">Product</div>
+        <div class="footer-links">
+          <button class="footer-link" onclick="startQuiz()">Build my blueprint</button>
+          <button class="footer-link" onclick="document.getElementById(&#39;faq&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">FAQ</button>
+          <button class="footer-link" onclick="openCheckout()">Pricing — $47</button>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Support</div>
+        <div class="footer-links">
+          <a class="footer-link" href="/cdn-cgi/l/email-protection#2a595f5a5a45585e6a59474b585e595e4b585e44455d044945"><span class="__cf_email__" data-cfemail="30434540405f424470435d51424443445142445e5f471e535f">[email&#160;protected]</span></a>
+          <button class="footer-link" onclick="openLegal(&#39;refund&#39;)">Refund Policy</button>
+          <button class="footer-link" onclick="openLegal(&#39;privacy&#39;)">Privacy Policy</button>
+          <button class="footer-link" onclick="openLegal(&#39;terms&#39;)">Terms of Service</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 SmartStart. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ CHECKOUT MODAL ═════════════════════════════════════ -->
+<div class="modal-overlay" id="checkoutModal" onclick="handleModalClick(event)">
+  <div class="modal">
+    <button class="btn-modal-close" onclick="closeCheckout()">×</button>
+    <div class="modal-title">Unlock your blueprint</div>
+    <p class="modal-sub">Complete your order and get your personalized plan emailed instantly.</p>
+    <div class="modal-price-row">
+      <span class="modal-price-label" id="modalPriceLabel">SmartStart Blueprint</span>
+      <span class="modal-price-val" id="modalPriceVal">$47</span>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Email address</label>
+      <input type="email" class="form-input" placeholder="you@email.com" id="checkoutEmail">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Full name</label>
+      <input type="text" class="form-input" placeholder="Your name" id="checkoutName">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Card details</label>
+      <div id="stripeCardElement" style="background:var(--surface2);border:1px solid var(--border);padding:14px 16px;border-radius:0;transition:border-color .15s;"></div>
+      <div id="stripeCardErrors" style="color:#f87171;font-size:12px;margin-top:6px;font-family:&#39;JetBrains Mono&#39;,monospace;"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Discount code (optional)</label>
+      <div class="discount-row">
+        <input type="text" class="form-input" placeholder="ENTER CODE" id="discountInput" style="text-transform:uppercase;letter-spacing:.08em;">
+        <button class="btn-apply" onclick="applyDiscount()">Apply</button>
+      </div>
+      <div class="discount-msg" id="discountMsg"></div>
+    </div>
+
+    <div class="stripe-note">🔒 Secured by Stripe · Your card is never stored</div>
+    <button class="btn-pay" id="payBtn" onclick="processPayment()">Pay $47 — Get my blueprint</button>
+  </div>
+</div>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ─── QUIZ DATA ────────────────────────────────────────────
+var questions = [
+  {
+    id: 'business_type', type: 'options',
+    question: 'What type of business\ndo you want to start?',
+    sub: 'Pick the one that best fits your idea.',
+    options: [
+      { label: 'Content creator / social media', desc: 'TikTok, Instagram, YouTube — affiliate or brand deals' },
+      { label: 'E-commerce / online store', desc: 'Selling physical or digital products online' },
+      { label: 'Local service business', desc: 'Cleaning, lawn care, pressure washing, handyman' },
+      { label: 'Freelance / consulting', desc: 'Selling your skills or expertise to clients' },
+      { label: 'Digital products / info business', desc: 'Courses, templates, guides, memberships' },
+      { label: 'Food & beverage business', desc: 'Restaurant, food truck, catering, bakery' }
+    ]
+  },
+  {
+    id: 'niche', type: 'text',
+    question: 'Describe your\nspecific idea.',
+    sub: 'The more specific you are, the more personalized your blueprint. Be real — what have you been thinking about starting?',
+    placeholder: 'e.g. Online fitness coaching for busy moms, custom cake bakery in Phoenix, landscaping business...'
+  },
+  {
+    id: 'experience', type: 'options',
+    question: 'What\'s your\nexperience level?',
+    sub: 'Be honest — this shapes how detailed your plan will be.',
+    options: [
+      { label: 'Complete beginner', desc: 'Never run a business before' },
+      { label: 'Some experience', desc: "I've tried things but nothing stuck" },
+      { label: 'Intermediate', desc: 'I have some business experience in related areas' },
+      { label: 'Experienced', desc: "I've run businesses before, just need a plan for this one" }
+    ]
+  },
+  {
+    id: 'budget', type: 'options',
+    question: 'What\'s your\nstarting budget?',
+    sub: "We'll build your plan around what you can actually spend.",
+    options: [
+      { label: '$0 — bootstrapping', desc: 'Free tools only to start' },
+      { label: 'Under $100/month', desc: 'Small investment, smart tools' },
+      { label: '$100–$500/month', desc: 'Willing to invest to grow faster' },
+      { label: '$500+ / month', desc: 'Ready to invest seriously' }
+    ]
+  },
+  {
+    id: 'goal', type: 'options',
+    question: 'What does\nsuccess look like?',
+    sub: 'This determines the entire focus and urgency of your plan.',
+    options: [
+      { label: 'Replace my full-time income', desc: 'I need this to become my main income' },
+      { label: 'Make $1,000–$3,000/month on the side', desc: 'I want meaningful side income' },
+      { label: 'Quit a job I hate', desc: 'I have a deadline and a reason' },
+      { label: 'Build something I can sell later', desc: "I'm playing a longer game" }
+    ]
+  }
+];
+
+var answers = {};
+var currentQ = 0;
+var blueprintData = null;
+var currentDiscount = null;
+var currentPrice = 27;
+
+// ─── SCREEN MANAGEMENT ───────────────────────────────────
+function goHome() {
+  answers = {};
+  currentQ = 0;
+  blueprintData = null;
+  closeCheckout();
+  // Close any open FAQ items
+  document.querySelectorAll('.faq-item.open').forEach(function(f) { f.classList.remove('open'); });
+  showScreen('hero');
+  window.scrollTo(0, 0);
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('screen-'+id).classList.add('active');
+  window.scrollTo(0, 0);
+  var pct = { hero: 0, quiz: 25, generating: 65, preview: 85, success: 100 };
+  document.getElementById('progressStrip').style.width = (pct[id] || 0) + '%';
+}
+
+function startQuiz() { currentQ = 0; answers = {}; showScreen('quiz'); renderQ(); }
+
+// ─── QUIZ RENDER ─────────────────────────────────────────
+function renderQ() {
+  var q = questions[currentQ];
+  var hasAns = !!answers[q.id];
+
+  // Progress segments
+  var segs = questions.map(function(_, i) {
+    var cls = i < currentQ ? 'done' : i === currentQ ? 'active' : '';
+    return '<div class="qpb-seg ' + cls + '"></div>';
+  }).join('');
+
+  document.getElementById('quizWrap').innerHTML =
+    '<div class="quiz-progress-bar">' + segs + '</div>' +
+    '<div class="quiz-step-label">Question ' + (currentQ + 1) + ' of ' + questions.length + '</div>' +
+    '<h2 class="quiz-question">' + q.question.replace(/\n/g, '<br>') + '</h2>' +
+    '<p class="quiz-sub">' + q.sub + '</p>' +
+    (q.type === 'options' ? renderOpts(q) : renderText(q)) +
+    '<div class="quiz-nav">' +
+      (currentQ > 0 ? '<button class="btn-back" onclick="prevQ()">← Back</button>' : '') +
+      '<button class="btn-next" id="btnNext" onclick="nextQ()" ' + (hasAns ? '' : 'disabled') + '>' +
+        (currentQ === questions.length - 1 ? 'Build my blueprint →' : 'Continue →') +
+      '</button>' +
+    '</div>';
+}
+
+function renderOpts(q) {
+  return '<div class="quiz-options">' +
+    q.options.map(function(opt) {
+      var sel = answers[q.id] === opt.label ? 'selected' : '';
+      var safe = opt.label.replace(/'/g, "\\'");
+      return '<div class="quiz-option ' + sel + '" onclick="pickOpt(\'' + q.id + '\',\'' + safe + '\',this)">' +
+        '<div class="opt-radio"></div>' +
+        '<div><div class="opt-label">' + opt.label + '</div>' +
+        (opt.desc ? '<div class="opt-desc">' + opt.desc + '</div>' : '') +
+        '</div></div>';
+    }).join('') + '</div>';
+}
+
+function renderText(q) {
+  return '<textarea class="quiz-input" rows="3" placeholder="' + (q.placeholder || '') + '" id="textInput">' + (answers[q.id] || '') + '</textarea>';
+}
+
+function pickOpt(qId, val, el) {
+  answers[qId] = val;
+  document.querySelectorAll('.quiz-option').forEach(function(o) { o.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.getElementById('btnNext').disabled = false;
+  if (qId === 'business_type') updateHeroPreview(val);
+}
+
+document.addEventListener('input', function(e) {
+  if (e.target && e.target.id === 'textInput') {
+    var v = e.target.value.trim();
+    answers[questions[currentQ].id] = v;
+    document.getElementById('btnNext').disabled = v.length < 3;
+  }
+});
+
+function nextQ() {
+  if (questions[currentQ].type === 'text') {
+    var v = document.getElementById('textInput').value.trim();
+    if (v.length < 3) return;
+    answers[questions[currentQ].id] = v;
+  }
+  if (currentQ < questions.length - 1) { currentQ++; renderQ(); }
+  else generateBlueprint();
+}
+
+function prevQ() { if (currentQ > 0) { currentQ--; renderQ(); } }
+
+// ─── BLUEPRINT LIBRARY ────────────────────────────────────
+var blueprints = {
+  content: {
+    title: 'Content Creator & Affiliate Launch Blueprint',
+    phases: [
+      { name: 'Phase 1 — Setup', timing: 'Day 1–3', steps: [
+        { title: 'Create your TikTok, Instagram, and Facebook accounts with consistent branding', detail: 'Set up a TikTok Creator account, Instagram Creator account, and Facebook Page using the exact same username across all three. Your bio should state who you help and what you do in one sentence — "I break down gut health so you don\'t have to." Include your Beacons.ai link in every bio. Profile photo should be high quality, well-lit, and consistent across all platforms.', tags:['free','critical'], cost:'Free' },
+        { title: 'Join Amazon Associates and ShareASale — two affiliate networks covering any niche', detail: 'Go to affiliate-program.amazon.com and sign up for Amazon Associates (approved same day). Then sign up at shareasale.com and browse 4,000+ merchants in your niche — commissions range from 10–30%. Having both networks gives you a commission link for virtually anything you recommend, no matter your topic. These are the two biggest affiliate networks for new creators and approval requires zero followers.', tags:['free','critical'], cost:'Free' },
+        { title: 'Build your Beacons.ai link hub before your first video goes live', detail: 'Create a free page at beacons.ai. List your top affiliate links in commission order — highest recurring commissions first, one-time commissions second. Add a label and a one-sentence reason for each recommendation. This is the single link in every bio that does your selling while you sleep. Update it monthly as you find better-converting products.', tags:['free'], cost:'Free' }
+      ]},
+      { name: 'Phase 2 — Content', timing: 'Week 1', steps: [
+        { title: 'Write your first 21 video scripts using the PPSS framework', detail: 'Every script follows the same structure: Pain hook (0–2 seconds — state the problem they feel), Promise (2–5 seconds — what you\'re about to teach), Science/story (5–20 seconds — the value), Solution/CTA (20–30 seconds — your product recommendation and "link in bio"). Use Claude to write all 21 scripts in one session. Batch creates efficiency — you\'re not writing one script a day.', tags:['paid'], cost:'$20/mo Claude' },
+        { title: 'Generate all avatar videos in Higgsfield in one Sunday session', detail: 'Input each script into Higgsfield using your saved avatar character. Generate all videos at once — don\'t do one per day. Download every clip to a folder labeled by the week. Consistency of the avatar face across all videos is what builds audience recognition. Viewers should recognize your character within 2 seconds of the video starting.', tags:['paid'], cost:'~$20/mo' },
+        { title: 'Add auto-captions to every single video in CapCut — non-negotiable', detail: 'Import each video into CapCut, tap Text → Auto Captions, let it run. 85% of people watch without sound. The algorithm reads your captions to understand your content and distribute it to the right audience. Export at 1080x1920 vertical. Do not post any video without captions — this single step doubles your effective reach.', tags:['free','critical'], cost:'Free' }
+      ]},
+      { name: 'Phase 3 — Launch', timing: 'Week 2', steps: [
+        { title: 'Schedule a full week of content in Later — then don\'t touch it', detail: 'Upload all 21 videos to Later and schedule them across all three platforms. TikTok: 6am, 12pm, 7pm PT. Instagram: 6:30am, 12:30pm, 7:30pm. Facebook: 7am, 1pm, 8pm. Once scheduled, the machine runs without you. You do not manually post. You do not log in to check performance mid-week. You review analytics on Sunday only.', tags:['paid'], cost:'$18/mo' },
+        { title: 'Spend 15 minutes per day replying to comments — every comment, every day', detail: 'For the first two weeks this is your only daily task. Reply to every comment on your most recent videos. Short replies work: "Yes! Link in bio for the exact one I use." Never paste affiliate links directly in comments — platforms suppress this. When someone asks what product you recommend, always drive them to your bio. Engagement signals tell the algorithm your content is worth pushing.', tags:['daily'], cost:'Free' },
+        { title: 'Apply to Organifi and Seed affiliate programs while you wait for followers', detail: 'Organifi: organifi.com → footer → Affiliates → apply via ShareASale. Seed: seed.com → footer → Affiliate Program. In both applications describe yourself as "a health content creator building educational content on TikTok, Instagram, and Facebook." Both approve within 24–72 hours. Seed\'s $25/month recurring commission per subscriber is your passive income anchor — one subscriber who stays 12 months = $300 from one referral.', tags:['free','critical'], cost:'Free' }
+      ]},
+      { name: 'Phase 4 — Scale', timing: 'Month 2+', steps: [
+        { title: 'At 5,000 TikTok followers: apply for TikTok Shop affiliate immediately', detail: 'TikTok → Creator Tools → TikTok Shop → Apply for Affiliate. In-app checkout converts 3–5x better than external links. Browse the marketplace, filter by your niche, sort by commission rate, select products 20%+. Tag products directly in all future videos. Go back and add product tags to your top performing existing videos — you can do this retroactively.', tags:['critical'], cost:'Free' },
+        { title: 'Review analytics every Sunday and double your winners', detail: 'Open TikTok Analytics. Find your top 3 videos by views AND completion rate. Write down the hook format, topic, and structure of each. Make 30% of next week\'s scripts in that exact format. Cut whatever consistently underperforms. This compounding loop is the difference between accounts that plateau at 10k and accounts that hit 100k. You are not guessing — you are following the data.', tags:['weekly'], cost:'Free' }
+      ]}
+    ]
+  },
+  ecommerce: {
+    title: 'E-Commerce Product Brand Launch Blueprint',
+    phases: [
+      { name: 'Phase 1 — Validate First', timing: 'Day 1–5', steps: [
+        { title: 'Read every 1-star and 2-star Amazon review of your closest competitor', detail: 'Search Amazon for your product category. Open the top 3 sellers. Click the 1-star and 2-star reviews and read every single one. These complaints are your product opportunity — what do customers hate, what\'s missing, what do they wish existed? Document the 3 most common complaints. Your product positioning must directly address these. This is free market research that most people skip.', tags:['free','critical'], cost:'Free' },
+        { title: 'Validate demand before spending anything on inventory', detail: 'Post in 3 relevant Facebook groups or subreddits describing your product and asking if people would buy it at what price. Set up a free waitlist page on Carrd.co — takes 30 minutes. Goal: 50 people say yes or sign up. If you can\'t get 50 people interested before you build anything, the demand isn\'t there yet. Pivot the concept before ordering $500 in samples.', tags:['free','critical'], cost:'Free' },
+        { title: 'Order samples from 3 Alibaba suppliers before committing to any inventory', detail: 'Go to Alibaba.com, search your product category, filter for Trade Assurance + 4-star minimum. Contact 3–5 suppliers and request samples. Typical cost: $20–100 per sample including shipping. Never order bulk inventory without holding the product in your hands. Evaluate: quality, packaging quality, shipping time, and how responsive the supplier is to your questions — their communication speed now reflects their reliability later.', tags:['paid'], cost:'$60–$300 samples' }
+      ]},
+      { name: 'Phase 2 — Store Setup', timing: 'Week 1–2', steps: [
+        { title: 'Launch your Shopify store in one day — done beats perfect', detail: 'Sign up at shopify.com — free 3-day trial. Choose the Dawn theme (free, clean, converts well). Add your product with minimum 5 photos, a description that answers every question a buyer might have, and clear shipping + return policies. You do not need a perfect store. You need a live store. Fix it after your first sale. Most people spend 3 months perfecting a store that hasn\'t made a dollar yet.', tags:['paid'], cost:'$29/mo Shopify' },
+        { title: 'Start with Etsy in parallel — it has built-in discovery traffic', detail: 'Create an Etsy shop and list your product as a second sales channel. Etsy charges $0.20 per listing and 6.5% per sale. The advantage is Etsy\'s search traffic — people actively searching your product category will find you without any marketing effort. Use keyword-rich titles: "Handmade Custom Pet Portrait — Watercolor Painting — Dog Cat Gift." More channels = more chances to be found.', tags:['free'], cost:'$0.20/listing' },
+        { title: 'Create product content that shows the product being used, not just sitting there', detail: 'Your first 30 pieces of content: 40% educational about the problem your product solves, 30% product demonstrations, 20% testimonials and unboxings, 10% behind the scenes. Film vertically on your phone. Natural lighting beats expensive gear every time. The algorithm doesn\'t care about production quality — it cares about whether people watch past the 3-second mark.', tags:['free'], cost:'Free' }
+      ]},
+      { name: 'Phase 3 — First Sales', timing: 'Week 2–3', steps: [
+        { title: 'Launch to your existing network first — text 20 people personally', detail: 'Send a personal message to 20 people you actually know — former coworkers, friends, family, people from your neighborhood. Not a mass text. Individual messages: "Hey, I just launched something I\'ve been working on — [product]. I\'d love for you to check it out and if you know anyone who might want one, I\'d really appreciate a share." Your first 5 sales will almost certainly come from people who already know you.', tags:['free','critical'], cost:'Free' },
+        { title: 'Email every buyer personally within 24 hours of their order', detail: 'For your first 20 customers, send a personal email after their order. Introduce yourself, tell them why you started, ask for feedback. This builds the kind of loyalty that turns customers into advocates. Customers who get personal attention leave reviews, refer friends, and come back. One loyal customer who refers 3 people is worth more than 10 anonymous transactions.', tags:['critical'], cost:'Free' }
+      ]},
+      { name: 'Phase 4 — Scale', timing: 'Month 2+', steps: [
+        { title: 'Install Klaviyo on Shopify and set up 3 automated email flows', detail: 'Klaviyo is free up to 250 contacts. Create: (1) welcome sequence for new email subscribers, (2) abandoned cart recovery for people who didn\'t complete checkout, (3) post-purchase review request 7 days after delivery. These 3 automations typically generate 20–30% of e-commerce revenue on autopilot once built. You build them once, they run forever.', tags:['free'], cost:'Free to start' },
+        { title: 'Only run paid ads after you have organic proof of concept', detail: 'Do not spend money on ads until organic content has proven people want your product. Once you have 5+ organic posts converting and consistent sales, take your best performing organic video, boost it as a TikTok or Meta ad at $20/day for 7 days. If cost per acquisition is profitable, scale. If not, test different creative before increasing spend. Ads amplify what works — they don\'t fix what doesn\'t.', tags:['paid'], cost:'$20/day test' }
+      ]}
+    ]
+  },
+  local: {
+    title: 'Local Service Business Launch Blueprint',
+    phases: [
+      { name: 'Phase 1 — Legal & Pricing', timing: 'Day 1–3', steps: [
+        { title: 'Get insured through Next Insurance before your first job — $30–60/month', detail: 'Go to nextinsurance.com — you can get a general liability policy online in 10 minutes. Expect $30–60/month depending on your service. This is not optional. One accident on a client\'s property without insurance can wipe out months of income. Insurance also makes you immediately more credible than 80% of your competition who are operating without it.', tags:['critical','paid'], cost:'$30–60/mo' },
+        { title: 'Set up your Google Business Profile today — this is your #1 lead source forever', detail: 'Go to business.google.com and create your free profile in 20 minutes. When someone searches "[your service] near me," Google Business profiles appear before everything else. Fill in every field: service area, hours, description, add 5+ photos. Then ask every single customer for a Google review immediately after the job. 20 five-star reviews puts you at the top of local search in most neighborhoods.', tags:['free','critical'], cost:'Free' },
+        { title: 'Price 10–15% below the middle of your local market until you have 20 reviews', detail: 'Search Thumbtack and Angi for your competitors in your specific city. Find the middle price point. Set your prices 10–15% below that until you have 20+ Google reviews. You are buying reviews with the small price discount — reviews that will let you raise prices and win jobs for years. Once you have the reviews, raise your prices to market rate. Do not be the cheapest — that signals low quality.', tags:['free'], cost:'Free' }
+      ]},
+      { name: 'Phase 2 — First Customers', timing: 'Week 1', steps: [
+        { title: 'Post in every local Facebook group today — this gets your first customers fastest', detail: 'Search Facebook for "[your city] community," "[your city] buy sell trade," "[your city] neighbors." Post in 8–10 groups: "Hey everyone — I just launched [service] in [city]. Offering a discount for my first 5 customers. [Price], [what\'s included], [your number]. DM me or comment below." Include a before/after photo if you have one. Local Facebook groups convert faster than any other channel for local service businesses.', tags:['free','critical'], cost:'Free' },
+        { title: 'List on Thumbtack, Angi, and Nextdoor — free to create, fast to set up', detail: 'Create profiles on all three platforms in one afternoon. Complete every field, add photos, and write a bio that specifically mentions your city and neighborhood. Thumbtack charges $3–20 per lead you respond to — only respond to leads that match your exact service and area. Nextdoor is completely free and is where homeowners ask neighbors for service recommendations. A strong Nextdoor profile generates warm referrals passively.', tags:['free'], cost:'Free to list' },
+        { title: 'Door-knock or flyer 50 homes in your immediate neighborhood this week', detail: 'Design a simple flyer in Canva (free), print 50 at FedEx for around $5. Walk door-to-door in your neighborhood. A 2–3% conversion rate on 50 flyers = 1–2 jobs. Each job gives you a photo, a review opportunity, and a potential recurring customer. The neighbors who see your work in person refer you to their neighbors without you asking. Physical presence in your neighborhood builds the kind of trust no digital ad can replicate.', tags:['free'], cost:'$5 printing' }
+      ]},
+      { name: 'Phase 3 — Build Reputation', timing: 'Month 1', steps: [
+        { title: 'Text every customer your Google review link immediately after the job', detail: 'Text this within 30 minutes of completing every job: "Hey [name], thank you so much for having me out today! If you\'re happy with the work I\'d really appreciate a quick Google review — it helps me grow. Here\'s the direct link: [link]." Getting the review request in while the experience is fresh dramatically increases response rate. Getting the link in a text makes it frictionless. 20 reviews within your first month puts you at the top of local search.', tags:['critical'], cost:'Free' },
+        { title: 'Pitch every customer a recurring service agreement before you leave', detail: 'At the end of every job: "I also offer a monthly service — for [X] I\'ll come out every [frequency] and you\'ll never have to think about it. It\'s 15% less than booking one-off." Most people say yes because the convenience is worth more than the money. One recurring customer at $150/month is $1,800/year with zero additional acquisition cost. Build your recurring base fast — recurring revenue is what makes a stable business.', tags:['critical'], cost:'Free' }
+      ]},
+      { name: 'Phase 4 — Scale', timing: 'Month 2–3', steps: [
+        { title: 'Hire a part-time helper and double your capacity without doubling your hours', detail: 'Post on Facebook Marketplace or Craigslist for a part-time helper at $15–18/hour. Pay them hourly while you charge customers your full rate. On a $200 job taking 2 hours with a helper, you pay $30–36 in labor and keep $164+. With a helper you take twice the jobs. This is the step that turns a side hustle into a real business with real income — this is where your hourly rate doubles without working more hours.', tags:['paid'], cost:'$15–18/hr labor' },
+        { title: 'Create a referral program — one text to your existing customers', detail: 'Text every past customer: "Hey [name] — I\'m running a referral program. If you refer a friend who books a job, you both get $25 off. Know anyone who could use [service]?" Referrals from happy customers convert at 5x the rate of cold leads and cost almost nothing. A customer base of 30 people each referring one person doubles your customer count with zero ad spend.', tags:['free'], cost:'Free' }
+      ]}
+    ]
+  },
+  freelance: {
+    title: 'Freelance & Consulting Business Launch Blueprint',
+    phases: [
+      { name: 'Phase 1 — Position & Package', timing: 'Day 1–3', steps: [
+        { title: 'Write your positioning statement before you do anything else', detail: 'The biggest freelance mistake is being too broad. Not "I do design" — "I design high-converting landing pages for e-commerce brands doing $10k–$100k/month." The more specific, the easier it is for clients to say yes and refer you. Write it in this format: "I help [specific client] achieve [specific outcome] through [specific service]." Post it everywhere — LinkedIn headline, email signature, how you introduce yourself.', tags:['free','critical'], cost:'Free' },
+        { title: 'Set your rates higher than you think and package your work into fixed prices', detail: 'Research rates on Upwork, LinkedIn, and industry communities for your specific service. Most new freelancers undercharge by 40–60%. Fixed-price packages convert better than hourly rates — "$1,500 for a complete landing page" is easier to say yes to than "$75/hour (we\'ll see how long it takes)." Start at $50/hour minimum. If you fill your calendar at that rate within 30 days, you\'re undercharging.', tags:['free'], cost:'Free' },
+        { title: 'Create 3 portfolio pieces before you pitch anyone — even if they\'re spec work', detail: 'You need 3 strong examples before you pitch anyone. No client work yet? Do spec work — redesign a real company\'s landing page, write sample copy for a real brand, build a demo project for a real business type. Or offer to work free for one local business in exchange for being able to show the work. Three excellent portfolio pieces beats 10 mediocre ones, and both beat none.', tags:['free'], cost:'Free' }
+      ]},
+      { name: 'Phase 2 — Get First Clients', timing: 'Week 1', steps: [
+        { title: 'Message 20 people in your existing network today — personally, not a mass email', detail: 'Make a list of 20 former coworkers, classmates, local business owners you know, or anyone whose business might benefit from your service. Send individual messages, not a copy-paste blast: "Hey [name] — I just started freelancing doing [specific service] for [specific type of client]. I thought of you because [reason]. Would you know anyone who might need this?" Most first clients come from people who already know you or know someone who does.', tags:['free','critical'], cost:'Free' },
+        { title: 'Optimize your LinkedIn profile for inbound in 30 minutes', detail: 'Update your headline to your positioning statement. Write an About section explaining who you help and what outcome you deliver. Add 3 portfolio examples as Featured content. Turn on Open to Work for freelance/contract opportunities. Post one educational piece per week about your topic — LinkedIn\'s algorithm rewards consistent posting and puts your content in front of potential clients who never heard of you.', tags:['free'], cost:'Free' },
+        { title: 'Apply to 5 Upwork projects per day for your first month — not for the money, for the reviews', detail: 'Create a complete Upwork profile with your positioning, portfolio, and a clear service description. Apply to 5 projects daily with personalized proposals — not copy-paste templates. Your goal in the first month is 3–5 reviews, not maximum hourly rate. Take jobs at lower rates to build your review profile. A 5-star profile on Upwork with 5 reviews unlocks dramatically better inbound opportunities and lets you raise rates fast.', tags:['free'], cost:'Free' }
+      ]},
+      { name: 'Phase 3 — Systems', timing: 'Month 1', steps: [
+        { title: 'Build a simple onboarding process that makes clients feel taken care of immediately', detail: 'Create a one-page Google Form clients fill out when they hire you: project goals, timeline, communication preferences, tool access. Set up a dedicated email thread or Slack channel for each client. Send a welcome email within 24 hours confirming scope, timeline, and first milestone. Professional onboarding is the single biggest trust signal in the first week. Most freelancers wing it — this makes you immediately stand out.', tags:['free'], cost:'Free' },
+        { title: 'Raise your rates 25–30% after your first 3 successful projects', detail: 'After 3 completed projects with positive feedback, raise your rates. If you\'re fully booked at current rates, that\'s your signal you\'re undercharging. New clients will never know your old rates. Tell existing clients 30 days in advance. Most freelancers stay underpriced for years out of fear — in reality, rate increases rarely cause client loss when your work quality is strong. The clients who leave over a rate increase were never long-term clients anyway.', tags:['critical'], cost:'Free' }
+      ]},
+      { name: 'Phase 4 — Scale', timing: 'Month 2–3', steps: [
+        { title: 'Convert every successful project into a monthly retainer pitch', detail: 'After completing a project: "I\'d love to continue working together on an ongoing basis. I offer a monthly retainer — [defined scope] for $[X]/month. It gives you priority access and consistent support without booking one-off projects each time." Retainers provide predictable monthly income and eliminate the time you spend on sales. One $1,000/month retainer client eliminates the need to find 2–3 new one-off clients every single month.', tags:['critical'], cost:'Free' },
+        { title: 'Ask every happy client for a testimonial and one warm referral introduction', detail: 'Within 48 hours of completing every successful project: "I\'d love two quick things — a 2-3 sentence testimonial I can use on my website, and if you know anyone who might benefit from [your service], I\'d really appreciate an introduction." A warm referral from a satisfied client converts at 5–10x the rate of cold outreach. This one habit, done consistently, can grow your business entirely through word of mouth.', tags:['weekly'], cost:'Free' }
+      ]}
+    ]
+  },
+  digital: {
+    title: 'Digital Products & Info Business Launch Blueprint',
+    phases: [
+      { name: 'Phase 1 — Build Your Product', timing: 'Day 1–5', steps: [
+        { title: 'Validate your product idea in Facebook groups before building a single thing', detail: 'Post in 3 relevant Facebook groups or subreddits describing your digital product and asking if people would pay for it and at what price. If you get 20+ positive responses, build it. If response is weak, adjust and test again. This takes 30 minutes and saves you from building something nobody wants — the most common and most expensive mistake in digital products. Validate first, build second. Always.', tags:['free','critical'], cost:'Free' },
+        { title: 'Use Claude to write your first product in under a day', detail: 'Use Claude to write the content for your guide, course, or template. For a PDF guide: prompt Claude to write a 20–30 page guide on your specific topic with actionable steps, real examples, and a clear structure. You provide the expertise and real-world experience — Claude handles the writing and organization. Spend the rest of the day editing, adding your personal voice, and making sure every piece of advice is something you\'d actually stand behind.', tags:['paid'], cost:'$20/mo Claude' },
+        { title: 'Design your product in Canva using a professional template — not from scratch', detail: 'Go to canva.com and search for "ebook" or "workbook" templates. Hundreds of free professional designs. Pick one that fits your topic, replace the placeholder content, add your branding. Export as PDF. Your first digital product does not need to be perfect — it needs to be genuinely useful. Spend two days maximum and get it listed. A done product that helps people beats a perfect product that never ships.', tags:['free'], cost:'Free' }
+      ]},
+      { name: 'Phase 2 — Set Up Your Store', timing: 'Week 1', steps: [
+        { title: 'List on Gumroad first — you can be selling within one hour', detail: 'Create a free account at gumroad.com. Upload your product, set your price ($17–$97 depending on depth), write a clear description answering "what will I get and what problem does this solve," add 3–5 preview screenshots. Gumroad takes 10% commission but provides built-in discovery traffic and handles all payment processing, delivery, and refunds automatically. You can have your first product for sale before lunch.', tags:['free','critical'], cost:'10% per sale' },
+        { title: 'Also list on Etsy to get a second traffic source for free', detail: 'Etsy has massive organic search traffic for digital planners, templates, guides, and workbooks. Create an Etsy shop and list your product as a digital download. Use keyword-rich titles: "2026 Business Launch Checklist PDF — Step by Step Startup Guide for Beginners." Add all 13 available tags. Etsy charges $0.20 per listing and 6.5% commission per sale. Having both Gumroad and Etsy running costs nothing and doubles your organic discovery.', tags:['free'], cost:'$0.20/listing' },
+        { title: 'Build a one-page sales page on Carrd.co in 45 minutes', detail: 'Go to carrd.co (free) and build a simple one-page site. Top section: headline stating the problem you solve. Middle: 5-7 bullet points of what\'s included. Bottom: testimonials or preview screenshots and a buy button linking to Gumroad. This URL is what you share on social media so customers land on a dedicated page instead of your raw Gumroad profile. Better first impression, better conversion rate.', tags:['free'], cost:'Free' }
+      ]},
+      { name: 'Phase 3 — Drive Traffic', timing: 'Week 2', steps: [
+        { title: 'Film a 30-second video scrolling through the inside of your product', detail: 'This is the highest-converting content format for digital product sales. Screen-record yourself scrolling through your PDF guide or template. Show the cover, the table of contents, and 3–4 specific pages. Add text overlay: "Everything inside my [product name] — link in bio." Post on TikTok, Instagram Reels, and Facebook Reels. Showing the inside of a digital product removes doubt and dramatically increases purchase confidence.', tags:['free','critical'], cost:'Free' },
+        { title: 'Spend 2 weeks providing genuine value in communities before mentioning your product', detail: 'Find 5 Facebook groups and 3 subreddits where your target customer already spends time. For 2 weeks, answer questions, share tips, help people — no product mention. After you\'ve established yourself as someone worth listening to, you can share your product when relevant: "I actually made a full guide on this — [link]." Community-driven traffic converts at 3–5x the rate of cold traffic because trust is already built.', tags:['free'], cost:'Free' }
+      ]},
+      { name: 'Phase 4 — Passive Engine', timing: 'Month 2+', steps: [
+        { title: 'Create a second complementary product and bundle them for higher order value', detail: 'Once your first product is selling, create a second product that naturally pairs with it. Offer both as a bundle at 20–25% less than buying separately. Bundles increase average order value without increasing traffic. A buyer who already trusted you enough to spend $47 will often spend another $27–$37 immediately if the upsell is relevant. Set the bundle up as an Gumroad upsell offer that appears automatically at checkout.', tags:['paid'], cost:'Your time' },
+        { title: 'Build an email list with a free lead magnet and send weekly value emails', detail: 'Create a shorter free version of your paid product to capture email addresses. Use Mailchimp or ConvertKit free tier to send weekly emails with tips related to your topic. Each email ends with a soft mention of your paid product. An email list of 1,000 people with a 2% conversion rate on a $47 product generates $940 per email send — and you own that audience completely, regardless of what any social platform does.', tags:['free'], cost:'Free to start' }
+      ]}
+    ]
+  },
+  food: {
+    title: 'Food & Beverage Business Launch Blueprint',
+    phases: [
+      { name: 'Phase 1 — Legal First', timing: 'Day 1–7', steps: [
+        { title: 'Get your food handler certification and business license before your first sale', detail: 'Get certified through ServSafe.com — the course takes about 8 hours and costs $15–36. Apply for a business license through your city or county clerk — typically $50–150. Operating without these makes every sale a liability. If you\'re ever inspected or something goes wrong, the absence of these documents turns a minor issue into a business-ending one. Do not skip this step.', tags:['critical','paid'], cost:'$65–$200 total' },
+        { title: 'Research your state\'s cottage food laws — you may be able to start from your home kitchen', detail: 'Search "[your state] cottage food law 2024" to find what you can sell from home without a commercial kitchen. Most states allow baked goods, jams, and non-hazardous foods up to a revenue cap ($25k–75k/year depending on state). If you need a commercial kitchen, search "[your city] commissary kitchen rental" — most rent for $15–30/hour with no long-term commitment. Start with cottage food to minimize upfront cost.', tags:['critical'], cost:'$0–$30/hr kitchen' },
+        { title: 'Price your products to cover real costs — including your time at $20/hour', detail: 'Calculate cost per unit: ingredients + packaging + your time at $20/hour + portion of any kitchen costs. Multiply total by 2.5 to set retail price. Most home food businesses underprice because they forget to count their time. A dozen custom cookies that cost $8 in ingredients and take 2 hours to make actually cost you $48 in real cost — price them at $60–75 minimum. Underpricing is the #1 reason food businesses fail to scale.', tags:['critical'], cost:'Free' }
+      ]},
+      { name: 'Phase 2 — First Customers', timing: 'Week 1–2', steps: [
+        { title: 'Tell your entire personal network before doing any formal marketing', detail: 'Text every person in your phone announcing what you\'re selling, what it costs, and how to order. Post on your personal Facebook and Instagram with photos of your best products. Offer a launch special for the first 10 orders. Your network will buy out of support and share without being asked. Most food businesses get their first 20–30 customers entirely from personal connections — and those customers become your most vocal advocates.', tags:['free','critical'], cost:'Free' },
+        { title: 'Create an Instagram and TikTok account and post food content 3x per week', detail: 'Create dedicated business accounts. Film short videos of your food being made — mixing, decorating, plating, packaging. Food content performs exceptionally well on both platforms because it triggers visual desire before people can think about it. Include ordering information in every caption and your bio. Food accounts regularly go viral with zero following because the content itself is compelling — a beautifully decorated cake needs no caption.', tags:['free'], cost:'Free' },
+        { title: 'Get a booth at your nearest farmers market for immediate local exposure', detail: 'Search your city\'s farmers market schedule. Most charge $20–50 per booth per day. Bring samples — people who taste will buy. Accept Venmo, Cash App, and Square card reader (free to set up). Talk to everyone. Farmers markets give you direct customer feedback, immediate cash sales, and your first photographs of people buying your product. The market community also refers vendors to catering and event opportunities organically.', tags:['paid'], cost:'$20–50/day booth' }
+      ]},
+      { name: 'Phase 3 — Systems', timing: 'Month 1', steps: [
+        { title: 'Set up a Square Online store or simple order form so customers can pay upfront', detail: 'Square Online is free to set up and lets customers order and pay online. Require minimum 3-day advance notice on all orders so you can manage production. Accepting payment upfront eliminates cancellations and gives you cash to buy ingredients before you make anything. Back-and-forth messaging to confirm orders and collect payment is what burns out food business owners — systematize this from day one.', tags:['free'], cost:'Free to start' },
+        { title: 'Reach out to local event planners and corporate offices about catering', detail: 'Email local wedding planners, corporate event coordinators, and office managers: "Hi, I run [business name] — a [city] [food type] business. We do catering for events from 10 to 200 people. I\'d love to send you our menu." One corporate catering order can equal 20 individual orders in revenue. List on The Knot and WeddingWire (free profiles) for wedding leads. A single wedding cake or corporate lunch can generate $500–2,000+ in one transaction.', tags:['critical'], cost:'Free' }
+      ]},
+      { name: 'Phase 4 — Brand & Grow', timing: 'Month 2–3', steps: [
+        { title: 'Order custom labels from Sticker Mule — $30 transforms your packaging', detail: 'Custom stickers and labels from Sticker Mule start at around $30 for 50 labels. Add your logo, business name, Instagram handle, and a QR code linking to your ordering page. Custom packaging dramatically increases the likelihood customers post your product on social media — free advertising every time. Branded packaging also allows you to charge 15–25% more than unbranded competitors at farmers markets and online.', tags:['paid'], cost:'$30–100 packaging' },
+        { title: 'Approach 3 local cafes and boutiques about wholesale or consignment', detail: 'Walk into local independent cafes, gift shops, and boutiques with samples. "Hi, I make [product] locally — I\'d love to talk about whether these might be a good fit for your shelves." Wholesale pricing is typically 50% of retail — you make less per unit but with guaranteed volume and zero marketing effort. Even one wholesale account at a local coffee shop can mean 50–100 units per week on autopilot.', tags:['critical'], cost:'Free' }
+      ]}
+    ]
+  }
+};
+
+// ─── KEYWORD MATCHING ─────────────────────────────────────
+function detectType(answers) {
+  var combined = ((answers.niche || '') + ' ' + (answers.business_type || '')).toLowerCase();
+  if (/food|restaurant|cafe|bakery|cake|cook|catering|meal|coffee|pizza|bread|dessert|pastry|bake|chef|kitchen|truck|beverage|drink|juice|smoothie|brew/i.test(combined)) return 'food';
+  if (/tiktok|instagram|youtube|social media|content|affiliate|influencer|reels|shorts|creator|channel|brand deal|commission|posting|viral/i.test(combined)) return 'content';
+  if (/lawn|clean|pressure wash|handyman|plumb|electric|paint|landscap|detail|pet|dog|walk|mow|snow|repair|install|local|service|maintenance|pool|window|carpet|roof|gutter|junk/i.test(combined)) return 'local';
+  if (/freelance|consult|design|write|copy|market|seo|web|develop|code|photo|video|edit|virtual assist|coach|mentor|advisor|agency|strategy/i.test(combined)) return 'freelance';
+  if (/course|ebook|template|guide|membership|digital|notion|download|printable|teach|online course|info product|workshop|webinar/i.test(combined)) return 'digital';
+  if (/ecommerce|e-commerce|shopify|amazon|etsy|store|shop|sell|product|brand|clothing|apparel|fashion|jewelry|candle|beauty|skincare|supplement/i.test(combined)) return 'ecommerce';
+  var type = (answers.business_type || '').toLowerCase();
+  if (/content|social|tiktok|affiliate/.test(type)) return 'content';
+  if (/local|service/.test(type)) return 'local';
+  if (/freelance|consult/.test(type)) return 'freelance';
+  if (/digital|info|course/.test(type)) return 'digital';
+  if (/food|restaurant|beverage/.test(type)) return 'food';
+  return 'ecommerce';
+}
+
+function generateBlueprint() {
+  showScreen('generating');
+  animateGenSteps();
+  setTimeout(function() {
+    var type = detectType(answers);
+    blueprintData = JSON.parse(JSON.stringify(blueprints[type]));
+    var niche = (answers.niche || '').split(' ').slice(0, 6).join(' ');
+    if (niche && niche.length > 3) {
+      blueprintData.title = niche.charAt(0).toUpperCase() + niche.slice(1) + ' — Launch Blueprint';
+    }
+    showPreview();
+  }, 5800);
+}
+
+// ─── RENDER BLUEPRINT ─────────────────────────────────────
+var bpStates = {};
+var bpTotal = 0;
+
+function showPreview() {
+  document.getElementById('previewTitle').textContent = blueprintData.title;
+  var mount = document.getElementById('blueprintMount');
+  mount.innerHTML = '';
+  bpStates = {};
+  bpTotal = 0;
+  blueprintData.phases.forEach(function(p) { bpTotal += p.steps.length; });
+
+  var prog = document.createElement('div');
+  prog.className = 'bp-progress';
+  prog.innerHTML = '<div class="bp-progress-top"><span class="bp-progress-label">YOUR PROGRESS</span><span class="bp-progress-count" id="bpCount">0 of ' + bpTotal + ' steps complete</span></div><div class="bp-progress-track"><div class="bp-progress-fill" id="bpFill"></div></div>';
+  mount.appendChild(prog);
+
+  var colors = [
+    {bg:'#2a1500',border:'#8a3a00',color:'#ff6a2a'},
+    {bg:'#00172a',border:'#005a8a',color:'#60a5fa'},
+    {bg:'#1a0a2a',border:'#5a1a8a',color:'#a78bfa'},
+    {bg:'#002a12',border:'#005a2a',color:'#00e676'},
+    {bg:'#2a0000',border:'#8a0000',color:'#f87171'}
+  ];
+  var tagStyles = {
+    free: 'border-color:#004d1e;color:#00e676;',
+    paid: 'border-color:#8a3a00;color:#ff6a2a;',
+    critical: 'border-color:#8a0000;color:#f87171;',
+    daily: 'border-color:#1a3a8a;color:#60a5fa;',
+    weekly: 'border-color:#4a1a8a;color:#a78bfa;'
+  };
+
+  var stepIdx = 0;
+  blueprintData.phases.forEach(function(phase, pi) {
+    var c = colors[pi % colors.length];
+    var phaseEl = document.createElement('div');
+    phaseEl.className = 'bp-phase';
+    var labelEl = document.createElement('div');
+    labelEl.className = 'bp-phase-label';
+    labelEl.innerHTML = '<span class="bp-phase-badge" style="background:' + c.bg + ';border-color:' + c.border + ';color:' + c.color + '">' + phase.name + '</span><span class="bp-phase-timing">' + phase.timing + '</span>';
+    phaseEl.appendChild(labelEl);
+
+    phase.steps.forEach(function(step) {
+      stepIdx++;
+      var sid = 'step' + stepIdx;
+      bpStates[sid] = { open: false, done: false };
+      var num = String(stepIdx).padStart(2, '0');
+      var stepEl = document.createElement('div');
+      stepEl.className = 'bp-step';
+      stepEl.id = sid;
+
+      var hdr = document.createElement('div');
+      hdr.className = 'bp-step-header';
+      hdr.addEventListener('click', function() { toggleBpStep(sid); });
+
+      var chk = document.createElement('div');
+      chk.className = 'bp-checkbox';
+      chk.id = 'chk' + sid;
+      chk.addEventListener('click', function(e) { e.stopPropagation(); doneBpStep(sid); });
+      hdr.appendChild(chk);
+
+      var info = document.createElement('div');
+      info.style.flex = '1';
+      info.innerHTML = '<div class="bp-step-num">STEP ' + num + '</div><div class="bp-step-title" id="stitle' + sid + '">' + step.title + '</div>';
+
+      var tagsEl = document.createElement('div');
+      tagsEl.className = 'bp-step-tags';
+      (step.tags || []).forEach(function(t) {
+        var tag = document.createElement('span');
+        tag.className = 'bp-tag';
+        tag.style.cssText = tagStyles[t] || 'border-color:#444;color:#888;';
+        tag.textContent = t;
+        tagsEl.appendChild(tag);
+      });
+      if (step.cost) {
+        var ct = document.createElement('span');
+        ct.className = 'bp-tag';
+        ct.style.cssText = 'border-color:#333;color:#666;';
+        ct.textContent = '💰 ' + step.cost;
+        tagsEl.appendChild(ct);
+      }
+      info.appendChild(tagsEl);
+      hdr.appendChild(info);
+
+      var arr = document.createElement('div');
+      arr.className = 'bp-arrow';
+      arr.id = 'arr' + sid;
+      arr.textContent = '▾';
+      hdr.appendChild(arr);
+      stepEl.appendChild(hdr);
+
+      var body = document.createElement('div');
+      body.className = 'bp-step-body';
+      body.id = 'body' + sid;
+      body.innerHTML = '<p class="bp-step-detail">' + step.detail + '</p>';
+      stepEl.appendChild(body);
+      phaseEl.appendChild(stepEl);
+    });
+    mount.appendChild(phaseEl);
+  });
+
+  showScreen('preview');
+}
+
+function toggleBpStep(sid) {
+  var wasOpen = bpStates[sid].open;
+  Object.keys(bpStates).forEach(function(k) {
+    if (bpStates[k].open) {
+      bpStates[k].open = false;
+      var el = document.getElementById(k);
+      if (el) { el.classList.remove('bp-open'); }
+      var b = document.getElementById('body' + k);
+      if (b) b.style.display = 'none';
+    }
+  });
+  if (!wasOpen) {
+    bpStates[sid].open = true;
+    var el = document.getElementById(sid);
+    if (el) el.classList.add('bp-open');
+    var b = document.getElementById('body' + sid);
+    if (b) b.style.display = 'block';
+  }
+}
+
+function doneBpStep(sid) {
+  bpStates[sid].done = !bpStates[sid].done;
+  var el = document.getElementById(sid);
+  var chk = document.getElementById('chk' + sid);
+  var ttl = document.getElementById('stitle' + sid);
+  if (bpStates[sid].done) {
+    el.classList.add('bp-done');
+    if (chk) chk.innerHTML = '<svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  } else {
+    el.classList.remove('bp-done');
+    if (chk) chk.innerHTML = '';
+  }
+  var done = Object.values(bpStates).filter(function(s) { return s.done; }).length;
+  var pct = bpTotal > 0 ? Math.round(done / bpTotal * 100) : 0;
+  var fill = document.getElementById('bpFill');
+  var cnt = document.getElementById('bpCount');
+  if (fill) fill.style.width = pct + '%';
+  if (cnt) cnt.textContent = done + ' of ' + bpTotal + ' steps complete';
+}
+
+// ─── GENERATING ANIMATION ─────────────────────────────────
+function animateGenSteps() {
+  var steps = ['gstep1', 'gstep2', 'gstep3', 'gstep4', 'gstep5'];
+  steps.forEach(function(id, i) {
+    setTimeout(function() {
+      if (i > 0) {
+        var prev = document.getElementById(steps[i - 1]);
+        prev.classList.remove('active');
+        prev.classList.add('done');
+        prev.querySelector('.gen-step-icon').textContent = '✓';
+      }
+      var cur = document.getElementById(id);
+      cur.classList.add('active');
+      cur.querySelector('.gen-step-icon').textContent = '◌';
+    }, i * 1100);
+  });
+  setTimeout(function() {
+    var last = document.getElementById(steps[steps.length - 1]);
+    last.classList.remove('active');
+    last.classList.add('done');
+    last.querySelector('.gen-step-icon').textContent = '✓';
+  }, steps.length * 1100);
+}
+
+// ─── CHECKOUT ─────────────────────────────────────────────
+var validCodes = {
+  'LAUNCH20': { type: 'percent', value: 20, label: '20% off applied' },
+  'ALEX10':   { type: 'fixed',   value: 10, label: '$10 off applied' },
+  'FOUNDING47': { type: 'percent', value: 100, label: '100% off — free access' }
+};
+
+// ─── HERO PREVIEW ─────────────────────────────────────────
+var heroData = {
+  'Content creator / social media': {
+    name: 'Faceless Affiliate Creator',
+    steps: [
+      { label: 'Set up TikTok + Instagram + Facebook accounts', done: true },
+      { label: 'Join Amazon Associates & ShareASale', done: true },
+      { label: 'Build Beacons.ai link hub', done: false, active: true },
+      { label: 'Write first 21 video scripts (PPSS framework)', done: false },
+      { label: 'Schedule content in Later', done: false }
+    ]
+  },
+  'E-commerce / online store': {
+    name: 'E-Commerce Product Brand',
+    steps: [
+      { label: 'Research competitor 1-star Amazon reviews', done: true },
+      { label: 'Validate demand — 50 people say yes', done: true },
+      { label: 'Order samples from 3 Alibaba suppliers', done: false, active: true },
+      { label: 'Launch Shopify store (done beats perfect)', done: false },
+      { label: 'Personal launch to your network — 20 texts', done: false }
+    ]
+  },
+  'Local service business': {
+    name: 'Pressure Washing LA',
+    steps: [
+      { label: 'Get insured via Next Insurance ($30–60/mo)', done: true },
+      { label: 'Set up Google Business Profile', done: true },
+      { label: 'Post in 10 local Facebook groups today', done: false, active: true },
+      { label: 'List on Thumbtack, Angi & Nextdoor', done: false },
+      { label: 'Flyer 50 homes in your neighborhood', done: false }
+    ]
+  },
+  'Freelance / consulting': {
+    name: 'Freelance Design Business',
+    steps: [
+      { label: 'Write your positioning statement', done: true },
+      { label: 'Set fixed-price packages', done: true },
+      { label: 'Create 3 portfolio pieces', done: false, active: true },
+      { label: 'Message 20 people in your network today', done: false },
+      { label: 'Apply to 5 Upwork projects per day', done: false }
+    ]
+  },
+  'Digital products / info business': {
+    name: 'Digital Products Business',
+    steps: [
+      { label: 'Validate idea in Facebook groups first', done: true },
+      { label: 'Build product in Canva using templates', done: true },
+      { label: 'List on Gumroad — live in under an hour', done: false, active: true },
+      { label: 'Film 30-second inside-the-product video', done: false },
+      { label: 'Build email list with free lead magnet', done: false }
+    ]
+  },
+  'Food & beverage business': {
+    name: 'Food & Beverage Launch',
+    steps: [
+      { label: 'Get food handler cert + business license', done: true },
+      { label: 'Research cottage food laws in your state', done: true },
+      { label: 'Price products to cover your time at $20/hr', done: false, active: true },
+      { label: 'Tell your entire personal network first', done: false },
+      { label: 'Get a booth at your nearest farmers market', done: false }
+    ]
+  }
+};
+
+function updateHeroPreview(businessType) {
+  var data = heroData[businessType] || heroData['Local service business'];
+  var nameEl = document.getElementById('hpcName');
+  var stepsEl = document.getElementById('hpcSteps');
+  if (!nameEl || !stepsEl) return;
+  nameEl.textContent = data.name;
+  stepsEl.innerHTML = data.steps.map(function(s) {
+    var cls = s.done ? 'done' : s.active ? 'active' : '';
+    return '<div class="hpc-step ' + cls + '"><div class="hpc-step-dot"></div><span>' + s.label + '</span></div>';
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateHeroPreview('Local service business');
+});
+
+var BACKEND_URL = 'https://smartstart-backend-production.up.railway.app';
+var stripeInstance = Stripe('pk_test_51TD9553s6rYuVeBooU09MWeTDYnnsKbtxCrByb9ayNchX1knNR7HWwLHj8sasl0ejXVexLU4s1Hf5iPq39mLm0QR00IDjHcjoC');
+var stripeElements = null;
+var stripeCardElement = null;
+
+function openCheckout() {
+  currentPrice = 47;
+  currentDiscount = null;
+  document.getElementById('modalPriceVal').textContent = '$47';
+  document.getElementById('discountMsg').textContent = '';
+  document.getElementById('discountInput').value = '';
+  document.getElementById('payBtn').textContent = 'Pay $47 — Get my blueprint';
+  document.getElementById('checkoutModal').classList.add('open');
+  // Mount Stripe card element
+  if (!stripeCardElement) {
+    stripeElements = stripeInstance.elements();
+    stripeCardElement = stripeElements.create('card', {
+      style: {
+        base: {
+          color: '#f0ece4',
+          fontFamily: "'Barlow', sans-serif",
+          fontSize: '15px',
+          '::placeholder': { color: '#444444' },
+          iconColor: '#ff4d00'
+        },
+        invalid: { color: '#f87171', iconColor: '#f87171' }
+      }
+    });
+    stripeCardElement.mount('#stripeCardElement');
+    stripeCardElement.on('change', function(e) {
+      var errDiv = document.getElementById('stripeCardErrors');
+      errDiv.textContent = e.error ? e.error.message : '';
+    });
+  }
+}
+
+function closeCheckout() {
+  document.getElementById('checkoutModal').classList.remove('open');
+}
+
+function handleModalClick(e) {
+  if (e.target === document.getElementById('checkoutModal')) closeCheckout();
+}
+
+function applyDiscount() {
+  var code = document.getElementById('discountInput').value.trim().toUpperCase();
+  var msg = document.getElementById('discountMsg');
+  var discount = validCodes[code];
+  if (!discount) {
+    msg.className = 'discount-msg err';
+    msg.textContent = 'Invalid code. Try LAUNCH20 for 20% off.';
+    return;
+  }
+  currentDiscount = discount;
+  if (discount.type === 'percent') {
+    currentPrice = Math.round(47 * (1 - discount.value / 100));
+  } else {
+    currentPrice = Math.max(0, 47 - discount.value);
+  }
+  msg.className = 'discount-msg ok';
+  msg.textContent = '✓ ' + discount.label;
+  if (currentPrice === 0) {
+    document.getElementById('modalPriceVal').textContent = 'FREE';
+    document.getElementById('payBtn').textContent = 'Get my free blueprint →';
+  } else {
+    document.getElementById('modalPriceVal').innerHTML = '<span style="font-size:18px;text-decoration:line-through;opacity:.4;color:var(--muted);">$47</span> $' + currentPrice;
+    document.getElementById('payBtn').textContent = 'Pay $' + currentPrice + ' — Get my blueprint';
+  }
+}
+
+function processPayment() {
+  var btn = document.getElementById('payBtn');
+  var email = document.getElementById('checkoutEmail').value.trim();
+  var name = document.getElementById('checkoutName').value.trim();
+  var errDiv = document.getElementById('stripeCardErrors');
+  if (!email || !email.includes('@')) {
+    errDiv.textContent = 'Please enter a valid email address.';
+    return;
+  }
+  if (!name) {
+    errDiv.textContent = 'Please enter your name.';
+    return;
+  }
+  btn.textContent = 'Processing...';
+  btn.disabled = true;
+  errDiv.textContent = '';
+  var discountCode = currentDiscount ? document.getElementById('discountInput').value.trim().toUpperCase() : null;
+  fetch(BACKEND_URL + '/create-payment-intent', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, name: name, discountCode: discountCode, answers: answers })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.error) { errDiv.textContent = data.error; btn.textContent = 'Pay $' + currentPrice + ' — Get my blueprint'; btn.disabled = false; return; }
+    if (data.free) { closeCheckout(); showScreen('success'); document.getElementById('progressStrip').style.width = '100%'; return; }
+    return stripeInstance.confirmCardPayment(data.clientSecret, {
+      payment_method: { card: stripeCardElement, billing_details: { name: name, email: email } }
+    });
+  })
+  .then(function(result) {
+    if (!result) return;
+    if (result.error) {
+      errDiv.textContent = result.error.message;
+      btn.textContent = 'Pay $' + currentPrice + ' — Get my blueprint';
+      btn.disabled = false;
+    } else if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
+      closeCheckout();
+      showScreen('success');
+      document.getElementById('progressStrip').style.width = '100%';
+    }
+  })
+  .catch(function(err) {
+    errDiv.textContent = 'Something went wrong. Please try again.';
+    btn.textContent = 'Pay $' + currentPrice + ' — Get my blueprint';
+    btn.disabled = false;
+  });
+}
+
+function downloadBlueprint() {
+  if (!blueprintData) return;
+  var html = buildDownloadHTML(blueprintData);
+  var blob = new Blob([html], { type: 'text/html' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'smartstart-blueprint.html';
+  a.click();
+}
+
+function buildDownloadHTML(bp) {
+  var phaseColors = [
+    { bg:'#2a1500', border:'#8a3a00', color:'#ff6a2a' },
+    { bg:'#00172a', border:'#005a8a', color:'#60a5fa' },
+    { bg:'#1a0a2a', border:'#5a1a8a', color:'#a78bfa' },
+    { bg:'#002a12', border:'#005a2a', color:'#4ade80' },
+    { bg:'#2a0000', border:'#8a0000', color:'#f87171' }
+  ];
+  var tagStyles = {
+    free:     'border:1px solid #004d1e;color:#4ade80;background:#001a0a;',
+    paid:     'border:1px solid #8a3a00;color:#ff6a2a;background:#1a0900;',
+    critical: 'border:1px solid #8a0000;color:#f87171;background:#1a0000;',
+    daily:    'border:1px solid #1a3a8a;color:#60a5fa;background:#00102a;',
+    weekly:   'border:1px solid #4a1a8a;color:#a78bfa;background:#0f0020;'
+  };
+  var stepCounter = 0;
+  var totalSteps = bp.phases.reduce(function(sum, p) { return sum + p.steps.length; }, 0);
+
+  var phasesHTML = bp.phases.map(function(phase, pi) {
+    var c = phaseColors[pi % phaseColors.length];
+    var stepsHTML = phase.steps.map(function(step) {
+      stepCounter++;
+      var sid = 's' + stepCounter;
+      var stepNum = String(stepCounter).padStart(2, '0');
+      var tagsHTML = (step.tags || []).map(function(t) {
+        var style = tagStyles[t] || 'border:1px solid #333;color:#666;background:#111;';
+        return '<span style="font-family:\'JetBrains Mono\',monospace;font-size:10px;padding:2px 8px;border-radius:3px;' + style + 'letter-spacing:.04em;margin-right:5px;">' + t + '</span>';
+      }).join('');
+      var costHTML = step.cost ? '<span style="font-family:\'JetBrains Mono\',monospace;font-size:10px;padding:2px 8px;border-radius:3px;border:1px solid #2a2a2a;color:#555;background:#111;letter-spacing:.04em;">💰 ' + step.cost + '</span>' : '';
+      return '<div class="step-card" id="' + sid + '" style="background:#141414;border:1px solid #2a2a2a;border-radius:10px;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:border-color .2s;" onclick="toggleStep(\'' + sid + '\')">'
+        + '<div style="display:flex;align-items:flex-start;gap:14px;padding:16px 18px;">'
+        + '<div id="chk-' + sid + '" onclick="event.stopPropagation();doneStep(\'' + sid + '\')" style="width:22px;height:22px;min-width:22px;border:1px solid #2a2a2a;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-top:2px;transition:all .15s;"></div>'
+        + '<div style="flex:1;min-width:0;">'
+        + '<div style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:#444;letter-spacing:.08em;margin-bottom:4px;">STEP ' + stepNum + '</div>'
+        + '<div id="ttl-' + sid + '" style="font-family:\'Barlow Condensed\',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:#f0ece4;line-height:1.2;margin-bottom:10px;">' + step.title + '</div>'
+        + '<div style="display:flex;flex-wrap:wrap;gap:4px;">' + tagsHTML + costHTML + '</div>'
+        + '</div>'
+        + '<div id="arr-' + sid + '" style="color:#444;font-size:18px;flex-shrink:0;margin-top:2px;transition:transform .2s;">▾</div>'
+        + '</div>'
+        + '<div id="body-' + sid + '" style="display:none;padding:0 18px 16px 54px;font-size:14px;color:#888;line-height:1.75;border-top:1px solid #1e1e1e;">' + step.detail + '</div>'
+        + '</div>';
+    }).join('');
+    return '<div style="margin-bottom:28px;">'
+      + '<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">'
+      + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:10px;padding:4px 12px;border-radius:3px;background:' + c.bg + ';border:1px solid ' + c.border + ';color:' + c.color + ';text-transform:uppercase;letter-spacing:.07em;">' + phase.name + '</span>'
+      + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:#444;">' + phase.timing + '</span>'
+      + '</div>'
+      + stepsHTML
+      + '</div>';
+  }).join('');
+
+  var progressBar = '<div style="background:#111;border:1px solid #1e1e1e;border-radius:8px;padding:16px 20px;margin-bottom:28px;">'
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
+    + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:#444;text-transform:uppercase;letter-spacing:.08em;">Your Progress</span>'
+    + '<span id="progressCount" style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#ff4d00;">0 of ' + totalSteps + ' steps complete</span>'
+    + '</div>'
+    + '<div style="background:#1a1a1a;height:3px;border-radius:2px;overflow:hidden;">'
+    + '<div id="progressFill" style="background:#ff4d00;height:3px;width:0%;transition:width .4s ease;border-radius:2px;"></div>'
+    + '</div></div>';
+
+  var js = '<script>'
+    + 'var dlTotal=' + totalSteps + ';'
+    + 'var dlStates={};'
+    + 'function toggleStep(sid){'
+    +   'var body=document.getElementById("body-"+sid);'
+    +   'var arr=document.getElementById("arr-"+sid);'
+    +   'var card=document.getElementById(sid);'
+    +   'var isOpen=body.style.display==="block";'
+    +   'document.querySelectorAll("[id^=\'body-s\']").forEach(function(b){b.style.display="none";});'
+    +   'document.querySelectorAll("[id^=\'arr-s\']").forEach(function(a){a.style.transform="";});'
+    +   'document.querySelectorAll(".step-card").forEach(function(c){c.style.borderColor="#2a2a2a";});'
+    +   'if(!isOpen){body.style.display="block";arr.style.transform="rotate(180deg)";card.style.borderColor="#3a3a3a";}'
+    + '}'
+    + 'function doneStep(sid){'
+    +   'dlStates[sid]=!dlStates[sid];'
+    +   'var card=document.getElementById(sid);'
+    +   'var chk=document.getElementById("chk-"+sid);'
+    +   'var ttl=document.getElementById("ttl-"+sid);'
+    +   'if(dlStates[sid]){'
+    +     'card.style.background="#0d0d0d";card.style.opacity=".65";'
+    +     'chk.style.background="#4ade80";chk.style.borderColor="#4ade80";'
+    +     'chk.innerHTML=\'<svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>\';'
+    +     'ttl.style.textDecoration="line-through";ttl.style.color="#444";'
+    +   '}else{'
+    +     'card.style.background="#141414";card.style.opacity="1";'
+    +     'chk.style.background="";chk.style.borderColor="#2a2a2a";chk.innerHTML="";'
+    +     'ttl.style.textDecoration="";ttl.style.color="#f0ece4";'
+    +   '}'
+    +   'var done=Object.values(dlStates).filter(Boolean).length;'
+    +   'var pct=dlTotal>0?Math.round(done/dlTotal*100):0;'
+    +   'document.getElementById("progressFill").style.width=pct+"%";'
+    +   'document.getElementById("progressCount").textContent=done+" of "+dlTotal+" steps complete";'
+    + '}'
+    + '<\/script>';
+
+  return '<!DOCTYPE html>'
+    + '<html lang="en"><head>'
+    + '<meta charset="UTF-8">'
+    + '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+    + '<title>' + bp.title + '</title>'
+    + '<link rel="preconnect" href="https://fonts.googleapis.com">'
+    + '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">'
+    + '<style>'
+    + '* { box-sizing: border-box; margin: 0; padding: 0; }'
+    + 'body { background: #0a0a0a; color: #f0ece4; font-family: \'Barlow\', sans-serif; min-height: 100vh; }'
+    + '.step-card:hover { border-color: #383838 !important; }'
+    + '</style>'
+    + '</head><body>'
+    + '<div style="max-width:760px;margin:0 auto;padding:40px 24px;">'
+    + '<div style="margin-bottom:32px;">'
+    + '<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#ff4d00;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;">// smartstart blueprint</div>'
+    + '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:30px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin-bottom:18px;">Smart<span style="color:#ff4d00;">Start</span></div>'
+    + '<h1 style="font-family:\'Barlow Condensed\',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:900;text-transform:uppercase;letter-spacing:.02em;line-height:1.1;margin-bottom:12px;">' + bp.title + '</h1>'
+    + (bp.summary ? '<p style="font-size:14px;color:#888;line-height:1.75;max-width:620px;margin-bottom:0;">' + bp.summary + '</p>' : '')
+    + '</div>'
+    + progressBar
+    + phasesHTML
+    + '<div style="text-align:center;padding:28px 0 8px;border-top:1px solid #1a1a1a;margin-top:8px;">'
+    + '<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#333;letter-spacing:.06em;">Built with SmartStart · smartstartnow.co</div>'
+    + '</div>'
+    + '</div>'
+    + js
+    + '</body></html>';
+}
+
+// ─── FAQ ─────────────────────────────────────────────────
+function toggleFaq(el) {
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(f) { f.classList.remove('open'); });
+  if (!isOpen) el.classList.add('open');
+}
+
+// ─── LEGAL MODALS ─────────────────────────────────────────
+var legalContent = {
+  privacy: {
+    title: 'Privacy Policy',
+    date: 'Last updated: January 1, 2026',
+    body: `
+      <h3>Information We Collect</h3>
+      <p>When you use SmartStart, we collect the information you provide directly: your answers to the business quiz (business type, idea description, experience level, budget, and goal), your email address, and your name at checkout. We do not store your credit card information — all payment processing is handled securely by Stripe.</p>
+      <h3>How We Use Your Information</h3>
+      <p>We use your quiz answers solely to generate your personalized business blueprint. We use your email address to deliver your blueprint and, with your permission, to send occasional product updates. We do not sell your personal information to third parties. We do not use your information for advertising or share it with data brokers.</p>
+      <h3>Data Storage & Security</h3>
+      <p>Your quiz answers are processed in real time to generate your blueprint and are not permanently stored on our servers after delivery. Your email address is stored securely and is used only for product delivery and support communications. We use industry-standard encryption (SSL/TLS) for all data in transit.</p>
+      <h3>Third-Party Services</h3>
+      <p>We use Stripe for payment processing (stripe.com/privacy) and Resend for email delivery. These services have their own privacy policies and handle data in accordance with applicable law. We do not share your data with any other third parties.</p>
+      <h3>Your Rights</h3>
+      <p>You may request deletion of your personal data at any time by emailing alexsmartstart@gmail.com. We will confirm deletion within 30 days.</p>
+      <h3>Contact</h3>
+      <p>Questions about this policy? Email us at alexsmartstart@gmail.com.</p>
+    `
+  },
+  terms: {
+    title: 'Terms of Service',
+    date: 'Last updated: January 1, 2026',
+    body: `
+      <h3>Acceptance of Terms</h3>
+      <p>By using SmartStart and purchasing a blueprint, you agree to these Terms of Service. If you do not agree, please do not use the service.</p>
+      <h3>What You're Buying</h3>
+      <p>SmartStart sells personalized business launch blueprints — interactive digital files delivered by email. Each blueprint is generated based on the information you provide in the quiz. Your $47 payment grants you a personal, non-transferable license to use your blueprint for your own business planning purposes.</p>
+      <h3>No Business Outcome Guarantees</h3>
+      <p>SmartStart provides guidance and actionable steps based on your inputs. We do not guarantee any specific business outcome, revenue, or success. Starting a business involves risk. Your results will depend on your effort, execution, market conditions, and many other factors outside our control. Our blueprints are tools — they work when you use them.</p>
+      <h3>Intellectual Property</h3>
+      <p>Your blueprint is generated for your personal use. You may not resell, redistribute, or claim ownership of SmartStart's methodology, templates, or generated content. The SmartStart name, logo, and system are the intellectual property of SmartStart.</p>
+      <h3>Prohibited Uses</h3>
+      <p>You may not use SmartStart to generate blueprints for resale, use automated tools to access our service, or attempt to reverse-engineer our generation process.</p>
+      <h3>Limitation of Liability</h3>
+      <p>SmartStart's total liability to you for any claim arising from your use of the service shall not exceed the amount you paid for your blueprint. We are not liable for indirect, incidental, or consequential damages.</p>
+      <h3>Changes to Terms</h3>
+      <p>We may update these terms occasionally. Continued use of SmartStart after changes constitutes acceptance of the updated terms.</p>
+      <h3>Contact</h3>
+      <p>Questions? Email alexsmartstart@gmail.com.</p>
+    `
+  },
+  refund: {
+    title: 'Refund Policy',
+    date: 'Last updated: January 1, 2026',
+    body: `
+      <h3>Our Commitment</h3>
+      <p>We stand behind every blueprint SmartStart generates. If you're not satisfied, we want to make it right.</p>
+      <h3>7-Day Money-Back Guarantee</h3>
+      <p>If you purchase a SmartStart blueprint and genuinely feel it was not personalized to your idea, was not actionable, or did not provide real value — email us at alexsmartstart@gmail.com within 7 days of your purchase and we will issue a full refund. No complicated process, no interrogation. We'll process your refund within 3–5 business days.</p>
+      <h3>What We Ask</h3>
+      <p>We only ask that you actually open and review your blueprint before requesting a refund. Most concerns people have before purchasing are resolved once they see their personalized plan. If after reviewing it you're still not satisfied, we'll refund you — full stop.</p>
+      <h3>How to Request a Refund</h3>
+      <p>Email alexsmartstart@gmail.com with the subject line "Refund Request" and include the email address you used at checkout. We'll confirm receipt within 24 hours and process your refund within 3–5 business days.</p>
+      <h3>Non-Refundable Situations</h3>
+      <p>Refunds are not available if you request one more than 7 days after purchase, or if we determine the service was abused (e.g. purchasing multiple blueprints then requesting refunds for all of them).</p>
+    `
+  },
+  contact: {
+    title: 'Contact Us',
+    date: 'We typically respond within 24 hours',
+    body: `
+      <h3>Email Support</h3>
+      <p>For all questions, refund requests, or feedback, email us directly at <strong style="color:var(--text)">alexsmartstart@gmail.com</strong>. We read and respond to every email personally.</p>
+      <h3>What to Include</h3>
+      <p>For the fastest response, include the email address you used at checkout and a brief description of your question or issue. For refund requests, use the subject line "Refund Request."</p>
+      <h3>Response Time</h3>
+      <p>We typically respond within 24 hours on business days. If you have an urgent issue, please include "URGENT" in your subject line.</p>
+      <h3>Feedback</h3>
+      <p>We genuinely want to know what you think of your blueprint — what worked, what didn't, what would make it more useful. Your feedback directly shapes how we improve the product.</p>
+    `
+  }
+};
+
+function openLegal(type) {
+  var lc = legalContent[type];
+  if (!lc) return;
+  document.getElementById('legalTitle').textContent = lc.title;
+  document.getElementById('leg
